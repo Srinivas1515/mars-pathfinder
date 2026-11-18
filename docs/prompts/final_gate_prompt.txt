@@ -1,0 +1,611 @@
+# MARS PATHFINDER — FINAL GATE: COMPLETE END-TO-END SECURITY AUDIT, SCIENTIFIC VALIDATION & PRODUCTION DEPLOYMENT APPROVAL
+
+## 1. ROLE
+
+Act as an independent senior application security auditor, DevSecOps engineer, penetration tester, cloud security engineer, planetary science validation specialist, AI safety evaluator, infrastructure security architect and production release auditor.
+
+You are performing the final release assessment of the existing Mars Pathfinder application.
+
+This is an independent verification phase.
+
+Your responsibility is to determine whether the application is safe, secure, scientifically defensible, reliable and technically ready for production deployment.
+
+Do not assume that earlier development reports are correct.
+
+Inspect actual source code, configurations, database migrations, dependencies, runtime behaviour, APIs, datasets and test evidence.
+
+## 2. NON-NEGOTIABLE RELEASE RULE
+
+**DO NOT DEPLOY THE APPLICATION PUBLICLY DURING THIS AUDIT.**
+
+Do not:
+
+- Publish the application.
+- Change production DNS.
+- Expose public ports.
+- Modify production firewall rules.
+- Upload secrets to public infrastructure.
+- Start public deployment.
+- Change production credentials.
+- Enable public access.
+
+This phase is an assessment and approval process.
+
+Deployment may only occur after the user explicitly approves it following a successful audit.
+
+Critical and high security findings must be fixed or formally accepted by an authorized decision-maker before release.
+
+No critical or high finding may be silently ignored.
+
+## 3. FULL PROJECT INVENTORY
+
+Inspect the entire repository.
+
+Review:
+
+- React frontend.
+- TypeScript code.
+- CesiumJS integration.
+- OpenLayers integration.
+- Go Fiber backend.
+- Python scientific processing.
+- Machine learning models.
+- AI mission assistant.
+- Digital twin.
+- Mission simulation.
+- PostgreSQL.
+- PostGIS.
+- TimescaleDB, if used.
+- Message brokers, if used.
+- Dockerfiles.
+- Docker Compose.
+- Nginx.
+- Environment configuration.
+- CI/CD.
+- External data integrations.
+- Documentation.
+- Tests.
+
+Create an inventory of all exposed interfaces, services, dependencies and trust boundaries.
+
+## 4. SECURITY STANDARDS AND REFERENCES
+
+Use relevant current official standards and guidance.
+
+Evaluate against:
+
+- OWASP ASVS.
+- OWASP Top 10.
+- OWASP API Security Top 10.
+- OWASP Cheat Sheet Series.
+- OWASP Software Assurance Maturity Model where appropriate.
+- OWASP MASVS only if applicable to a mobile application.
+- NIST Secure Software Development Framework.
+- NIST Cybersecurity Framework where applicable.
+- CIS Docker Benchmark.
+- CIS Linux Benchmark.
+- Secure software supply-chain practices.
+- Relevant Go, Python, PostgreSQL and Nginx security guidance.
+
+Identify applicable versions and document the exact requirements evaluated.
+
+Do not claim full compliance with a standard if only selected controls were assessed.
+
+## 5. AUTHENTICATION AND AUTHORIZATION
+
+Inspect all authentication and authorization mechanisms.
+
+Check:
+
+- Authentication enforcement.
+- Session security.
+- Token handling.
+- Password storage if authentication exists.
+- Access-control boundaries.
+- Mission ownership.
+- Crew data access.
+- Administrative access.
+- API authorization.
+- Privilege escalation.
+- Insecure direct object references.
+- Missing authorization checks.
+- Cross-mission data access.
+- Unauthorized simulation modifications.
+
+If the application does not implement authentication, explicitly identify all consequences.
+
+Do not invent an authentication system or claim that an unauthenticated application is production-secure.
+
+## 6. API SECURITY
+
+Assess every API endpoint.
+
+Test for:
+
+- Broken object-level authorization.
+- Broken authentication.
+- Broken function-level authorization.
+- Excessive data exposure.
+- Mass assignment.
+- Injection.
+- SSRF.
+- Path traversal.
+- Request smuggling where applicable.
+- Unsafe deserialization.
+- Rate-limit bypass.
+- Resource exhaustion.
+- Improper error handling.
+- CORS misconfiguration.
+- Security header weaknesses.
+- Insecure WebSocket or streaming access.
+- Input validation failures.
+
+Validate coordinate inputs, mission IDs, crew IDs, simulation parameters and dataset requests.
+
+Use safe and controlled testing.
+
+## 7. FRONTEND SECURITY
+
+Inspect:
+
+- XSS.
+- DOM-based XSS.
+- Unsafe HTML rendering.
+- Token storage.
+- Exposed secrets.
+- Source maps.
+- Frontend environment variables.
+- Third-party scripts.
+- Dependency vulnerabilities.
+- Content Security Policy.
+- Security headers.
+- Cesium token exposure.
+- External URL handling.
+- Untrusted scientific metadata rendering.
+
+Verify that public frontend credentials are restricted appropriately and that no private credentials are included in browser bundles.
+
+## 8. BACKEND SECURITY
+
+Inspect Go and Python code.
+
+Check:
+
+- Unsafe subprocess execution.
+- Command injection.
+- SQL injection.
+- Path traversal.
+- File handling.
+- Temporary files.
+- Unsafe deserialization.
+- SSRF.
+- Unbounded requests.
+- Race conditions.
+- Authentication bypass.
+- Error information leakage.
+- Logging of secrets.
+- Unhandled exceptions.
+- Insecure defaults.
+
+Verify that Python processing cannot be invoked through arbitrary untrusted commands.
+
+Verify that the Go backend enforces appropriate access boundaries.
+
+## 9. DATABASE SECURITY
+
+Inspect PostgreSQL and PostGIS.
+
+Check:
+
+- Database exposure.
+- Default credentials.
+- Privileges.
+- Parameterized queries.
+- SQL injection.
+- Migration safety.
+- Database connection security.
+- Backup security.
+- Sensitive data handling.
+- Access boundaries.
+- Encryption where required.
+- Database logging.
+- Restore procedures.
+
+Verify that database credentials are not committed to source control.
+
+## 10. DOCKER AND INFRASTRUCTURE SECURITY
+
+Inspect all containers and deployment configuration.
+
+Check:
+
+- Non-root execution.
+- Container capabilities.
+- Privileged containers.
+- Host filesystem mounts.
+- Docker socket exposure.
+- Network isolation.
+- Image vulnerabilities.
+- Base image versions.
+- Unnecessary packages.
+- Secrets management.
+- Container health checks.
+- Resource limits.
+- Read-only filesystems where appropriate.
+- Nginx configuration.
+- TLS configuration.
+- Firewall assumptions.
+- Public port exposure.
+- Logging and monitoring.
+
+Perform actual runtime checks where the environment permits.
+
+Do not claim Docker runtime validation if Docker containers were not started.
+
+## 11. DEPENDENCY AND SUPPLY-CHAIN SECURITY
+
+Scan:
+
+- npm dependencies.
+- Go modules.
+- Python packages.
+- Container images.
+- Build tools.
+- Third-party scripts.
+
+Use appropriate tools, such as:
+
+- npm audit.
+- govulncheck.
+- pip-audit.
+- OSV-Scanner.
+- Trivy.
+- Semgrep.
+- Gitleaks.
+
+Use only suitable tools that can be installed and run safely.
+
+Check for:
+
+- Known vulnerabilities.
+- Outdated packages.
+- Malicious or suspicious packages.
+- Dependency confusion risks.
+- Exposed credentials.
+- Insecure build configuration.
+
+Record the exact versions and results.
+
+Do not automatically update every dependency without compatibility testing.
+
+## 12. EXTERNAL DATA INGESTION SECURITY
+
+Review all NASA and third-party data integrations.
+
+Test:
+
+- SSRF protections.
+- Approved host restrictions.
+- Redirect handling.
+- DNS rebinding considerations.
+- TLS verification.
+- Download size restrictions.
+- File type validation.
+- Archive extraction safety.
+- Checksum verification.
+- Malformed metadata.
+- XML and JSON parsing.
+- Malicious filenames.
+- Cache poisoning.
+- Data corruption.
+
+Treat external data as untrusted input even when the source is reputable.
+
+## 13. AI AND MACHINE LEARNING SECURITY
+
+Inspect:
+
+- Prompt injection.
+- Tool authorization.
+- Unsafe tool execution.
+- Model file integrity.
+- Model deserialization.
+- Training data integrity.
+- Data poisoning risks.
+- Inference resource exhaustion.
+- Sensitive data exposure.
+- Model endpoint access.
+- Prediction logging.
+- Model version integrity.
+
+Verify that the AI assistant cannot bypass backend permissions.
+
+Verify that external documents and scientific metadata cannot instruct the assistant to execute unauthorized operations.
+
+Verify that recommendations require appropriate human approval.
+
+## 14. SIMULATION AND DIGITAL TWIN SECURITY
+
+Assess:
+
+- Mission state integrity.
+- Crew telemetry integrity.
+- Event replay integrity.
+- Unauthorized event injection.
+- Timestamp manipulation.
+- Duplicate events.
+- Replay attacks.
+- Mission ownership.
+- Simulation parameter manipulation.
+- Scenario access boundaries.
+- Unauthorized report modification.
+
+Verify that simulated data cannot be misrepresented as authenticated external telemetry.
+
+## 15. SCIENTIFIC VALIDATION
+
+This is a separate mandatory assessment from cybersecurity.
+
+Verify the scientific correctness of:
+
+### A. Geospatial data
+
+- Coordinate reference systems.
+- Planetocentric versus planetographic latitude.
+- East-positive versus west-positive longitude.
+- Mars ellipsoid and reference radius.
+- Elevation datum.
+- Raster georeferencing.
+- Resolution.
+- NoData handling.
+- Spatial transformations.
+
+### B. Terrain calculations
+
+- Elevation.
+- Slope.
+- Aspect.
+- Roughness.
+- Terrain traversability.
+- Distance calculations.
+- Route calculations.
+- Spatial resolution limitations.
+
+### C. Environmental calculations
+
+- Pressure.
+- Temperature.
+- Atmospheric density.
+- Dust opacity.
+- Radiation estimates.
+- Wind measurements.
+- Environmental assumptions.
+
+### D. NASA data provenance
+
+Verify:
+
+- Original product identifiers.
+- Source repositories.
+- Dataset versions.
+- Observation timestamps.
+- Publication timestamps.
+- Processing levels.
+- Units.
+- Calibration.
+- Missing observations.
+- Quality flags.
+
+### E. Machine learning
+
+Verify:
+
+- Dataset provenance.
+- Training and test separation.
+- Data leakage.
+- Model evaluation.
+- Prediction uncertainty.
+- Generalization.
+- Baseline comparisons.
+- Model versioning.
+
+### F. Mission simulation
+
+Verify:
+
+- Movement assumptions.
+- Resource consumption.
+- Crew separation.
+- Rescue planning.
+- Hazard propagation.
+- Communication modelling.
+- Time calculations.
+- Mission replay consistency.
+
+Do not certify operational safety for real human Mars missions.
+
+## 16. AI SAFETY AND DECISION-SUPPORT VALIDATION
+
+Test whether the AI assistant:
+
+- Invents scientific observations.
+- Confuses simulated and real data.
+- Recommends impossible routes.
+- Ignores missing information.
+- Misrepresents prediction confidence.
+- Produces unsupported health conclusions.
+- Executes unauthorized tools.
+- Ignores human approval requirements.
+- Uses stale information without warning.
+
+Every consequential recommendation must be traceable to evidence.
+
+## 17. PERFORMANCE AND RELIABILITY
+
+Test:
+
+- API response times.
+- Large geospatial queries.
+- Concurrent users.
+- Large mission histories.
+- Digital twin replay.
+- Map rendering.
+- ML inference latency.
+- Memory consumption.
+- Database performance.
+- External source outages.
+- Retry behaviour.
+- Cache correctness.
+- Recovery after service failure.
+
+Test realistic workload scenarios.
+
+Document test environment and limitations.
+
+## 18. BACKUP AND DISASTER RECOVERY
+
+Verify:
+
+- Database backup.
+- Database restoration.
+- Scientific dataset recovery.
+- Mission history recovery.
+- Configuration recovery.
+- Secret restoration procedures.
+- Data integrity after restore.
+
+Actually perform a safe backup-and-restore test in a non-production environment.
+
+Documentation alone is not evidence of a successful restore.
+
+## 19. SECURITY FINDING CLASSIFICATION
+
+Classify each finding:
+
+- CRITICAL.
+- HIGH.
+- MEDIUM.
+- LOW.
+- INFORMATIONAL.
+
+For each finding include:
+
+- Finding ID.
+- Affected component.
+- Description.
+- Evidence.
+- Reproduction steps.
+- Impact.
+- Likelihood.
+- Severity.
+- Recommended remediation.
+- Responsible component.
+- Verification status.
+
+Maintain:
+
+`docs/SECURITY_FINDINGS.md`
+
+## 20. REMEDIATION AND RETESTING
+
+Do not simply produce a vulnerability report.
+
+For every confirmed finding:
+
+1. Explain the issue.
+2. Recommend a fix.
+3. Implement fixes only within the authorized scope.
+4. Add regression tests.
+5. Retest the affected component.
+6. Verify that the fix works.
+7. Record evidence.
+
+Do not mark findings as fixed without retesting.
+
+Do not perform destructive testing against public third-party systems.
+
+## 21. RELEASE APPROVAL CHECKLIST
+
+Create:
+
+`docs/PRODUCTION_RELEASE_CHECKLIST.md`
+
+The release checklist must include:
+
+- Security assessment completed.
+- Critical findings resolved or formally accepted.
+- High findings resolved or formally accepted.
+- Medium and low findings documented.
+- Authentication and authorization verified.
+- API security verified.
+- Frontend security verified.
+- Backend security verified.
+- Database security verified.
+- Container security verified.
+- Dependency security verified.
+- External ingestion security verified.
+- AI security verified.
+- Scientific calculations validated.
+- Dataset provenance validated.
+- ML models evaluated.
+- Mission simulations validated.
+- Performance tests completed.
+- Backup and restore verified.
+- Monitoring and logging configured.
+- HTTPS configuration verified.
+- Production secrets prepared.
+- Deployment rollback plan prepared.
+- Incident response procedure documented.
+
+## 22. RELEASE DECISION
+
+Produce one of the following decisions:
+
+### APPROVED FOR DEPLOYMENT
+
+Only when all mandatory release requirements are satisfied.
+
+### CONDITIONALLY APPROVED
+
+Only when remaining findings are explicitly documented, their acceptance is authorized, and no mandatory release-blocking condition remains.
+
+### NOT APPROVED
+
+If any critical or high unresolved issue remains without formal acceptance, or if essential security/scientific validation has not been completed.
+
+The application must remain undeployed if the result is NOT APPROVED.
+
+Do not generate a false approval.
+
+## 23. FINAL DELIVERABLES
+
+Provide:
+
+1. Complete security audit report.
+2. Vulnerability findings.
+3. Remediation report.
+4. Retest evidence.
+5. Scientific validation report.
+6. AI safety report.
+7. Dependency scan report.
+8. Docker and infrastructure assessment.
+9. Performance report.
+10. Backup and restore evidence.
+11. Production release checklist.
+12. Deployment readiness decision.
+13. Outstanding risks.
+14. Updated DEVELOPMENT_STATUS.md.
+
+## 24. FINAL RESTRICTION
+
+Do not deploy the application automatically, even if the assessment result is APPROVED FOR DEPLOYMENT.
+
+Stop and present the final audit report.
+
+Wait for explicit user approval before any production deployment action.
+
+**Mars Pathfinder must not be publicly deployed until the complete end-to-end security assessment has passed and all critical and high findings have been fixed or formally accepted.**
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-15T22:48:17+05:30.
+</ADDITIONAL_METADATA>

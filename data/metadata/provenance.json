@@ -1,0 +1,15 @@
+{
+  "MOLA_MEG016_TEST": {
+    "product_id": "MOLA_MEG016_TEST",
+    "filename": "sample_mola_tile.raw",
+    "source_url": "https://pds-geosciences.wustl.edu/missions/mgs/meg016.img",
+    "mission": "Mars Global Surveyor",
+    "instrument": "MOLA",
+    "format": "raw/binary",
+    "size_bytes": 35,
+    "sha256": "fcf620ee13eda7ca3ca8ba027349cd117df1feaff28fc74cfb68a14b77f71436",
+    "status": "verified",
+    "acquired_at": "2026-11-18T13:58:21.091455+00:00",
+    "metadata": {}
+  }
+}

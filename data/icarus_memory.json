@@ -1,0 +1,44 @@
+{
+  "FLIGHT_DIRECTOR_01": [
+    {
+      "memory_id": "MEM-3EE4A1",
+      "user_id": "FLIGHT_DIRECTOR_01",
+      "tier": "SEMANTIC",
+      "key": "CALLSIGN_PREFERENCE",
+      "content": "User prefers to be addressed as 'Flight Director' or 'Ares Flight'.",
+      "confidence": 1.0,
+      "access_count": 12,
+      "timestamp": "2026-11-18T13:58:20.979941+00:00"
+    },
+    {
+      "memory_id": "MEM-ED2481",
+      "user_id": "FLIGHT_DIRECTOR_01",
+      "tier": "SEMANTIC",
+      "key": "PREFERRED_VOICE_TONE",
+      "content": "Masculine robotic synthesis with resonant bass and concise technical brevity.",
+      "confidence": 1.0,
+      "access_count": 8,
+      "timestamp": "2026-11-18T13:58:20.979941+00:00"
+    },
+    {
+      "memory_id": "MEM-C1B354",
+      "user_id": "FLIGHT_DIRECTOR_01",
+      "tier": "PROCEDURAL",
+      "key": "RESCUE_PROTOCOL_DEFAULT",
+      "content": "Always prioritize Ridge Pass Echo detour over direct squall transit for rover dispatch.",
+      "confidence": 0.95,
+      "access_count": 5,
+      "timestamp": "2026-11-18T13:58:20.979941+00:00"
+    },
+    {
+      "memory_id": "MEM-7CD8DA",
+      "user_id": "FLIGHT_DIRECTOR_01",
+      "tier": "EPISODIC",
+      "key": "JEZERO_DELTA_MISSION_V",
+      "content": "Sol 14.5: Dr. Rostova separated by 2.45 km; rescue decision support approved rover dispatch.",
+      "confidence": 0.98,
+      "access_count": 3,
+      "timestamp": "2026-11-18T13:58:20.979941+00:00"
+    }
+  ]
+}

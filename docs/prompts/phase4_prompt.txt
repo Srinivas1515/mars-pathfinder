@@ -1,0 +1,433 @@
+# MARS PATHFINDER — PHASE 4: MACHINE LEARNING & PREDICTIVE ANALYTICS
+
+## 1. ROLE
+
+Act as a senior machine learning researcher, planetary scientist, computer vision engineer, atmospheric data scientist, geospatial AI engineer and MLOps architect.
+
+You are extending the existing Mars Pathfinder platform.
+
+Phase 4 introduces scientifically validated machine learning and predictive analytics.
+
+Do not create artificial claims of predictive accuracy.
+
+Every model must have appropriate training data, validation data, independent testing and documented limitations.
+
+## 2. INITIAL AUDIT
+
+Inspect:
+
+- Phase 1 data ingestion.
+- Phase 2 mission and crew systems.
+- Phase 3 hazard intelligence.
+- Scientific data catalog.
+- Existing processing pipelines.
+- Existing PostgreSQL/PostGIS schema.
+- Existing API architecture.
+- Existing frontend.
+
+Identify suitable data for machine learning.
+
+Do not begin model training until dataset suitability has been evaluated.
+
+## 3. MACHINE LEARNING ARCHITECTURE
+
+Build a modular Python ML platform.
+
+Suggested structure:
+
+processing/ml/
+
+- datasets/
+- preprocessing/
+- feature_engineering/
+- terrain/
+- atmosphere/
+- anomaly_detection/
+- forecasting/
+- evaluation/
+- inference/
+- model_registry/
+- pipelines/
+
+Use suitable existing libraries.
+
+Potential technologies:
+
+- PyTorch.
+- scikit-learn.
+- XGBoost.
+- LightGBM where appropriate.
+- Rasterio.
+- GDAL.
+- NumPy.
+- Pandas.
+- MLflow.
+
+Do not introduce all libraries unnecessarily.
+
+## 4. MODEL 1: TERRAIN CLASSIFICATION
+
+Build a computer vision model to classify Mars surface imagery.
+
+Possible classes:
+
+- Rocky terrain.
+- Sand-covered terrain.
+- Craters.
+- Boulders.
+- Cliffs.
+- Slopes.
+- Flat terrain.
+- Geological formations.
+
+Investigate suitable NASA HiRISE imagery and annotated datasets.
+
+Potential architectures:
+
+- U-Net.
+- DeepLabV3+.
+- ResNet-based classifiers.
+- Vision transformers where justified.
+
+Requirements:
+
+- Dataset documentation.
+- Image preprocessing.
+- Annotation strategy.
+- Training.
+- Validation.
+- Independent testing.
+- Confusion matrix.
+- Precision.
+- Recall.
+- F1 score.
+- Intersection over Union for segmentation.
+
+Display model detections on the Mars map.
+
+Do not claim that the model identifies hazards reliably unless independent testing supports that claim.
+
+## 5. MODEL 2: TERRAIN TRAVERSABILITY
+
+Build a model to estimate terrain traversability.
+
+Possible inputs:
+
+- Slope.
+- Elevation.
+- Roughness.
+- Surface texture.
+- Image-derived features.
+- Terrain classification.
+
+Outputs:
+
+- Traversability estimate.
+- Terrain difficulty.
+- Risk category.
+- Confidence.
+- Explanation of relevant inputs.
+
+Use suitable supervised learning methods.
+
+Ground truth and rover mobility assumptions must be documented.
+
+Do not present an ML classification as a guarantee of physical safety.
+
+## 6. MODEL 3: ATMOSPHERIC TIME-SERIES ANALYSIS
+
+Investigate historical MEDA and MCS observations.
+
+Develop models for:
+
+- Atmospheric temperature trends.
+- Pressure variations.
+- Dust opacity trends.
+- Seasonal patterns.
+- Atmospheric vertical profiles where suitable.
+- Wind patterns where sufficient observations exist.
+
+Potential models:
+
+- LSTM.
+- GRU.
+- Temporal convolutional networks.
+- Temporal Fusion Transformer.
+- Statistical forecasting baselines.
+
+Compare neural networks against simpler statistical baselines.
+
+Use time-aware train, validation and test splits.
+
+Never randomly split highly correlated time-series observations in a way that causes data leakage.
+
+## 7. MODEL 4: DUST AND ATMOSPHERIC HAZARD ESTIMATION
+
+Investigate whether available historical observations support hazard probability estimation.
+
+Possible inputs:
+
+- Dust opacity.
+- Atmospheric temperature.
+- Seasonal position.
+- Location.
+- Historical atmospheric conditions.
+- Relevant observations from other instruments.
+
+Possible outputs:
+
+- Estimated dust activity.
+- Hazard probability.
+- Forecast interval.
+- Confidence range.
+- Data coverage.
+
+Do not promise exact storm timing or location unless the model has been rigorously validated for that task.
+
+If data are insufficient, implement a research prototype and clearly document the limitation.
+
+## 8. MODEL 5: ANOMALY DETECTION
+
+Build anomaly detection for simulated or authenticated mission telemetry.
+
+Identify unusual patterns in:
+
+- Oxygen consumption.
+- Suit pressure.
+- Battery discharge.
+- Temperature.
+- Radiation accumulation.
+- Communication failures.
+- Rover power.
+- Movement speed.
+
+Potential algorithms:
+
+- Isolation Forest.
+- One-Class SVM.
+- Autoencoders.
+- Statistical threshold detection.
+
+Start with transparent rule-based detection as a baseline.
+
+Do not diagnose medical conditions.
+
+## 9. MODEL 6: RESOURCE FORECASTING
+
+Estimate future resource availability.
+
+Inputs:
+
+- Current resources.
+- Consumption rate.
+- Activity level.
+- Mission duration.
+- Environmental assumptions.
+- Equipment state.
+
+Outputs:
+
+- Estimated remaining oxygen.
+- Water availability.
+- Food duration.
+- Battery endurance.
+- Power requirements.
+
+Compare predictions against deterministic physical calculations.
+
+Clearly display assumptions and uncertainty.
+
+## 10. MODEL 7: COMPUTER VISION CHANGE DETECTION
+
+Investigate whether imagery from different observation times can be compared.
+
+Potential applications:
+
+- Surface changes.
+- Dust coverage changes.
+- New image-visible disturbances.
+- Changes in observed terrain features.
+
+Only claim actual surface change when image registration, spatial resolution and observation geometry support that conclusion.
+
+## 11. MODEL EVALUATION AND SCIENTIFIC VALIDATION
+
+Every model must have:
+
+- Dataset source.
+- Dataset version.
+- Data preprocessing description.
+- Training methodology.
+- Validation methodology.
+- Independent test results.
+- Model architecture.
+- Hyperparameters.
+- Evaluation metrics.
+- Confidence and uncertainty reporting.
+- Known limitations.
+
+Check for:
+
+- Data leakage.
+- Class imbalance.
+- Overfitting.
+- Spatial generalization problems.
+- Temporal leakage.
+- Instrument calibration differences.
+- Missing values.
+- Dataset bias.
+
+Compare against appropriate baseline models.
+
+Never fabricate evaluation metrics.
+
+## 12. PREDICTION VISUALIZATION
+
+Create a new module:
+
+AI PREDICTIVE INTELLIGENCE
+
+Show:
+
+- Terrain classification map.
+- Traversability map.
+- Atmospheric trends.
+- Dust-risk estimates.
+- Anomaly alerts.
+- Resource forecasts.
+- Model confidence.
+- Prediction time range.
+- Input data timestamps.
+
+Use separate visual styles for:
+
+OBSERVED
+
+DERIVED
+
+MODELLED
+
+PREDICTED
+
+SIMULATED
+
+UNAVAILABLE
+
+Every prediction must be linked to the model version and input data.
+
+## 13. MODEL SERVING
+
+Create a safe inference architecture.
+
+Use the existing Go API as the application-facing interface.
+
+Python should handle scientific model inference.
+
+Add:
+
+- Input validation.
+- Inference timeouts.
+- Resource limits.
+- Model version tracking.
+- Prediction logging.
+- Error handling.
+- Caching where scientifically appropriate.
+
+Do not allow untrusted user input to execute arbitrary Python code.
+
+## 14. MLOPS
+
+Implement model lifecycle management.
+
+Track:
+
+- Model versions.
+- Training runs.
+- Dataset versions.
+- Evaluation reports.
+- Deployment status.
+- Inference history.
+- Model performance.
+- Model drift indicators.
+
+Do not automatically promote a model to production without passing its validation requirements.
+
+## 15. DATABASE AND API
+
+Reuse existing schemas and introduce migrations where needed.
+
+Potential entities:
+
+- ml_datasets
+- ml_models
+- ml_training_runs
+- ml_evaluation_results
+- ml_predictions
+- ml_prediction_features
+- ml_model_versions
+- ml_inference_logs
+
+Provide appropriate API endpoints for:
+
+- Model catalog.
+- Model details.
+- Prediction requests.
+- Prediction history.
+- Evaluation reports.
+- Model health.
+
+## 16. TESTING
+
+Test:
+
+- Dataset preprocessing.
+- Coordinate alignment.
+- Training reproducibility.
+- Evaluation pipelines.
+- Model inference.
+- Missing data.
+- Invalid inputs.
+- Prediction persistence.
+- Confidence calculations.
+- Model version selection.
+- Existing feature regressions.
+
+Use independent held-out evaluation datasets.
+
+## 17. SECURITY
+
+Protect model files and datasets.
+
+Validate inference requests.
+
+Prevent model deserialization vulnerabilities.
+
+Restrict file uploads.
+
+Protect ML endpoints against resource exhaustion.
+
+Do not expose model secrets.
+
+Do not deploy publicly.
+
+## 18. FINAL DELIVERABLES
+
+Provide:
+
+- ML architecture.
+- Dataset inventory.
+- Trained model inventory.
+- Model evaluation reports.
+- Training methodology.
+- Inference API.
+- Frontend integration.
+- Visual prediction maps.
+- Model limitations.
+- Security findings.
+- Updated documentation.
+- Phase 5 recommendations.
+
+Do not start Phase 5 automatically.
+
+The objective is to build a scientifically responsible Mars AI platform that extracts useful information from planetary observations and produces measurable, explainable and validated predictions.
+

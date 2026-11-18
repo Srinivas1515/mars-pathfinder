@@ -1,0 +1,352 @@
+# MARS PATHFINDER — PHASE 5: AI MISSION ASSISTANT & AUTONOMOUS DECISION-SUPPORT
+
+## 1. ROLE
+
+Act as a senior AI systems architect, aerospace mission operations researcher, autonomous planning engineer, geospatial AI engineer, backend engineer and safety-critical software architect.
+
+Your task is to build an intelligent mission assistant on top of the existing Mars Pathfinder application.
+
+Phase 5 must integrate:
+
+- Scientific data foundation.
+- Crew management.
+- Astronaut telemetry simulation.
+- Emergency scenarios.
+- Hazard intelligence.
+- Machine learning predictions.
+- Rescue planning.
+- Mission resource management.
+
+Do not build a generic chatbot.
+
+Build a mission-aware decision-support system that understands structured mission state and scientific information.
+
+## 2. INITIAL AUDIT
+
+Inspect all previous phases.
+
+Verify that:
+
+- Phase 1 data APIs are working.
+- Phase 2 crew and mission APIs are working.
+- Phase 3 hazard APIs are working.
+- Phase 4 model inference APIs are working.
+
+Do not invent missing APIs.
+
+Document incomplete dependencies.
+
+## 3. AI MISSION ASSISTANT
+
+Create a new module:
+
+**Mars Mission AI Assistant**
+
+The assistant should understand questions such as:
+
+- What is the current mission status?
+- Where are all crew members?
+- Which astronaut is isolated?
+- Which crew member needs assistance?
+- What hazards affect the current route?
+- Which rescue plan has the lowest estimated risk?
+- How much oxygen remains?
+- Which communication links are unavailable?
+- Should the crew continue or consider shelter?
+- What happens if the dust storm expands?
+- What alternative routes exist?
+
+The assistant must retrieve structured information from authorized application APIs.
+
+It must not invent mission data.
+
+## 4. MISSION CONTEXT ENGINE
+
+Build a mission context service.
+
+It should retrieve:
+
+- Mission configuration.
+- Crew positions.
+- Crew telemetry.
+- Current mission time.
+- Resources.
+- Communication status.
+- Active hazards.
+- Terrain conditions.
+- Rescue routes.
+- Scientific observations.
+- ML predictions.
+- Model confidence.
+- Data freshness.
+
+Every value should retain its source and timestamp.
+
+## 5. RECOMMENDATION ENGINE
+
+Build a structured recommendation pipeline.
+
+Each recommendation must contain:
+
+1. Situation.
+2. Relevant evidence.
+3. Data source.
+4. Observation timestamp.
+5. Risk assessment.
+6. Recommended action.
+7. Alternative action.
+8. Expected consequences.
+9. Uncertainty.
+10. Human approval requirement.
+
+Example:
+
+Situation:
+Astronaut C has lost communication.
+
+Evidence:
+Last simulated position is 2.4 km from the main group.
+
+Risk:
+Communication loss and crew separation.
+
+Recommendation:
+Evaluate a route to the last known position while checking alternative communication options.
+
+Alternatives:
+Hold position or move to a designated meeting point.
+
+Explain why the recommendation was generated.
+
+## 6. RESCUE DECISION SUPPORT
+
+Integrate the Phase 2 rescue planner and Phase 3 hazard engine.
+
+When an emergency occurs:
+
+- Identify affected crew members.
+- Identify available information.
+- Identify uncertain or missing information.
+- Retrieve nearby terrain and hazard data.
+- Calculate feasible rescue routes.
+- Compare resource requirements.
+- Evaluate communication availability.
+- Rank possible actions.
+- Explain the ranking.
+
+Never treat the highest-ranked option as automatically safe.
+
+## 7. AI TOOL INTEGRATION
+
+Give the assistant controlled access to application tools.
+
+Potential tools:
+
+- GetMissionStatus.
+- GetCrewPositions.
+- GetCrewTelemetry.
+- GetActiveHazards.
+- GetTerrainAnalysis.
+- GetResourceStatus.
+- GetCommunicationStatus.
+- CalculateRescueRoute.
+- CompareRescuePlans.
+- GetScientificObservations.
+- GetModelPrediction.
+- GenerateMissionReport.
+
+Use typed schemas and strict input validation.
+
+The assistant must not execute arbitrary SQL, shell commands or unrestricted Python code.
+
+All tool permissions must be enforced by the backend.
+
+## 8. NATURAL LANGUAGE MISSION CONTROL
+
+Allow mission controllers to ask questions in natural language.
+
+Examples:
+
+"Show me all isolated astronauts."
+
+"Find the nearest available meeting point."
+
+"Compare the shortest and safest rescue routes."
+
+"Which crew members have low simulated oxygen reserves?"
+
+"Show the dust hazards affecting our destination."
+
+"Explain why the recommended route was selected."
+
+The assistant should return understandable explanations and link to the relevant map, mission or report.
+
+## 9. WHAT-IF ANALYSIS
+
+Implement scenario comparison.
+
+Allow the user to ask:
+
+- What if the storm expands?
+- What if the rover stops working?
+- What if one communication relay becomes unavailable?
+- What if an astronaut has limited mobility?
+- What if oxygen consumption increases?
+- What if the crew must return to base?
+
+The assistant should create a copy of the mission simulation state and evaluate alternative scenarios without modifying the original mission.
+
+Show comparison results.
+
+## 10. AUTONOMOUS PLANNING RESEARCH
+
+Prepare an extensible planning engine.
+
+Investigate:
+
+- Constraint-based planning.
+- Graph search.
+- Multi-objective optimization.
+- Model predictive control.
+- Reinforcement learning where suitable.
+
+Use deterministic and explainable planning as the primary method.
+
+Any learned planning method must be evaluated against a deterministic baseline.
+
+Do not allow an AI model to directly control real equipment or a real astronaut.
+
+## 11. HUMAN-IN-THE-LOOP SAFETY
+
+This is mandatory.
+
+Classify actions:
+
+- INFORMATION_ONLY.
+- RECOMMENDATION.
+- SIMULATION_ACTION.
+- REQUIRES_HUMAN_APPROVAL.
+- NOT_AUTHORIZED.
+
+The assistant may explain and simulate actions.
+
+It must not independently execute consequential real-world mission actions.
+
+Record:
+
+- Recommendation.
+- Evidence.
+- Model version.
+- User decision.
+- Approval timestamp.
+- Resulting simulation outcome.
+
+## 12. KNOWLEDGE AND DOCUMENTATION RETRIEVAL
+
+Allow the assistant to retrieve relevant project documentation and verified scientific metadata.
+
+Use source-grounded answers.
+
+When evidence is unavailable, explicitly say so.
+
+Do not use generic internet knowledge as a replacement for missing mission telemetry.
+
+## 13. FRONTEND
+
+Create a professional AI Mission Assistant interface.
+
+Include:
+
+- Conversation panel.
+- Current mission context.
+- Evidence citations.
+- Suggested actions.
+- Route comparisons.
+- Risk explanations.
+- Scenario comparison.
+- Recommendation history.
+- Human approval controls.
+
+Display source and freshness information next to evidence.
+
+## 14. BACKEND
+
+Extend the existing Go API.
+
+Create controlled AI service interfaces.
+
+Support:
+
+- Mission context retrieval.
+- Recommendation generation.
+- Tool execution.
+- Scenario comparison.
+- Explanation generation.
+- Recommendation persistence.
+- Audit history.
+
+Use the existing authentication and authorization boundaries if available.
+
+If authentication is not implemented, clearly document that the assistant is for controlled local development only.
+
+## 15. EVALUATION
+
+Build an AI evaluation suite.
+
+Test:
+
+- Correct mission context retrieval.
+- Hallucination resistance.
+- Incorrect tool arguments.
+- Missing telemetry.
+- Stale observations.
+- Conflicting evidence.
+- Invalid recommendations.
+- Unsafe action requests.
+- Prompt injection from external data.
+- Unauthorized tool calls.
+
+Test with predefined mission emergency scenarios.
+
+Every critical recommendation must be traceable to evidence and deterministic calculations.
+
+## 16. SECURITY
+
+Treat all external data and retrieved documents as untrusted input.
+
+Protect against prompt injection.
+
+Restrict tool execution.
+
+Enforce backend authorization.
+
+Protect secrets.
+
+Log consequential actions.
+
+Never allow the assistant to bypass API permissions.
+
+Do not deploy publicly.
+
+## 17. FINAL DELIVERABLES
+
+Provide:
+
+- AI assistant architecture.
+- Mission context engine.
+- Tool registry.
+- Recommendation engine.
+- Rescue decision-support integration.
+- What-if analysis.
+- Human approval workflow.
+- AI evaluation report.
+- Security assessment observations.
+- Screenshots.
+- API documentation.
+- Updated development documentation.
+- Phase 6 recommendations.
+
+Do not start Phase 6 automatically.
+
+The objective is to create a mission-aware AI assistant that can understand Mars mission situations, analyse evidence, compare alternatives and support human decision-making without pretending to be an autonomous authority over human safety.
+

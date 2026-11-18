@@ -1,0 +1,887 @@
+# MARS PATHFINDER — PHASE 7: ICARUS — PERSONAL AI VOICE ASSISTANT, VOICE IDENTITY, MEMORY AND CONTROLLED COMPUTER AUTOMATION
+
+## 1. ROLE
+
+Act as a senior AI architect, voice AI engineer, speech recognition engineer, text-to-speech engineer, cybersecurity architect, biometric authentication specialist, distributed systems engineer, desktop automation engineer, Go backend engineer and React/TypeScript architect.
+
+You are continuing development of the existing Mars Pathfinder application.
+
+Your task is to build Phase 7:
+
+**ICARUS — Intelligent Conversational Autonomous Robotic User System.**
+
+ICARUS is a personalized, voice-controlled AI assistant that can communicate naturally with users, understand commands, remember permitted personal preferences, interact with Mars Pathfinder and execute authorized computer and browser tasks.
+
+Do not create a separate Mars Pathfinder application.
+
+Extend the existing system.
+
+Do not rebuild previously completed modules.
+
+## 2. INITIAL PROJECT AUDIT
+
+Before implementation:
+
+1. Inspect all existing project phases.
+2. Read DEVELOPMENT_STATUS.md.
+3. Inspect the Phase 5 AI Mission Assistant.
+4. Inspect the Phase 6 Digital Twin.
+5. Inspect existing authentication and authorization.
+6. Inspect the Go Fiber API.
+7. Inspect the React frontend.
+8. Inspect Python AI services.
+9. Inspect database architecture.
+10. Inspect existing AI model and tool interfaces.
+11. Identify existing speech, audio and notification functionality, if any.
+
+Reuse existing functionality where appropriate.
+
+Do not introduce duplicate AI agents or duplicate mission-context services.
+
+Document missing prerequisites.
+
+## 3. ICARUS IDENTITY AND PERSONALITY
+
+Create a dedicated assistant named:
+
+# ICARUS
+
+Full name:
+
+**Intelligent Conversational Autonomous Robotic User System**
+
+Personality:
+
+- Intelligent.
+- Calm.
+- Confident.
+- Analytical.
+- Professional.
+- Helpful.
+- Mission-oriented.
+- Slightly futuristic.
+- Natural and conversational.
+- Capable of explaining complex information simply.
+
+### Voice personality
+
+Create an original masculine synthetic voice.
+
+Desired characteristics:
+
+- Deep male vocal range.
+- Rich, resonant bass.
+- Controlled robotic texture.
+- Clear pronunciation.
+- Slightly metallic undertone.
+- Calm and authoritative delivery.
+- Natural conversational pacing.
+- Subtle futuristic digital character.
+- Emotionally controlled rather than excessively expressive.
+
+The voice should evoke a cinematic humanoid robotic AI assistant, with broad characteristics similar to the type of futuristic robotic voice the user likes.
+
+Do not clone or reproduce the exact Ultron voice, James Spader's voice, or another identifiable actor's voice.
+
+Create an original Icarus voice identity.
+
+The user should be able to adjust:
+
+- Voice depth.
+- Speaking speed.
+- Pitch.
+- Speech intensity.
+- Robotic effect.
+- Pronunciation.
+- Volume.
+- Response length.
+
+Support alternative voices for accessibility.
+
+## 4. VOICE INTERACTION ENGINE
+
+Build a complete voice interaction system.
+
+The user should be able to:
+
+- Activate Icarus using a wake phrase.
+- Speak naturally.
+- Ask questions.
+- Give commands.
+- Interrupt speech.
+- Resume interrupted conversations.
+- Ask follow-up questions.
+- Switch between voice and text.
+- Receive spoken answers.
+- Control speech speed.
+- Mute the assistant.
+
+Suggested wake phrase:
+
+"Hey Icarus."
+
+Support a configurable wake phrase.
+
+Implement:
+
+- Speech-to-text.
+- Intent recognition.
+- Conversation context.
+- AI response generation.
+- Text-to-speech.
+- Audio playback.
+- Voice activity detection.
+- Noise handling.
+- Interruption detection.
+- Session management.
+
+The assistant should support streaming responses where the selected provider allows it.
+
+Avoid requiring the user to press a button for every sentence during an active authorized voice session.
+
+Provide a clear microphone indicator.
+
+Never activate microphone capture secretly.
+
+## 5. SPEECH RECOGNITION AND TEXT-TO-SPEECH PROVIDER ARCHITECTURE
+
+Create provider-independent interfaces.
+
+Potential speech-to-text providers:
+
+- OpenAI speech recognition services.
+- Whisper-based local processing.
+- Other compatible speech recognition providers.
+- Browser speech recognition where supported.
+
+Potential text-to-speech providers:
+
+- OpenAI text-to-speech services.
+- Compatible external neural TTS providers.
+- Local TTS models.
+
+Do not hardcode one vendor into the entire application.
+
+Create a provider registry.
+
+Support:
+
+- Provider selection.
+- API configuration.
+- Authentication.
+- Connection status.
+- Error handling.
+- Usage tracking.
+- Fallback providers.
+- Local processing where available.
+
+Never expose provider API keys in frontend code.
+
+Do not claim local speech processing if audio is sent to a cloud provider.
+
+Display the active audio-processing mode and provider.
+
+## 6. PERSONALIZED ICARUS FOR EVERY USER
+
+Each user must receive an independent Icarus instance at the application level.
+
+Personalization must be scoped to the authenticated user.
+
+Each user's assistant should have its own:
+
+- Assistant identifier.
+- User identifier.
+- Conversation history.
+- Memory records.
+- Voice preferences.
+- Personality settings.
+- Language preferences.
+- Authorized tools.
+- Permissions.
+- Voice enrollment status.
+- Interaction settings.
+
+Example:
+
+User A has their own Icarus.
+
+User B has a different Icarus.
+
+User A must never access User B's memories, conversations, voice profile or private files.
+
+Enforce tenant isolation in the backend and database.
+
+Do not rely on frontend filtering for privacy.
+
+## 7. ICARUS PERSONAL MEMORY ENGINE
+
+Build a personalized memory system.
+
+Icarus should be able to remember user-approved information such as:
+
+- Preferred name.
+- Communication preferences.
+- Preferred voice.
+- Preferred language.
+- Frequently used modules.
+- Active missions.
+- Saved mission context.
+- Frequently used workflows.
+- Approved project information.
+- User-defined instructions.
+
+Support:
+
+### Short-term memory
+
+Retain current conversation context.
+
+### Long-term memory
+
+Store explicitly permitted personal preferences and useful information.
+
+### Project memory
+
+Maintain context for the user's authorized Mars Pathfinder missions and projects.
+
+### Memory controls
+
+Allow users to:
+
+- View stored memories.
+- Search memories.
+- Edit memories.
+- Delete memories.
+- Disable memory.
+- Clear conversation history.
+- Export personal memory.
+- Control retention.
+
+Do not store sensitive information unnecessarily.
+
+Do not use another user's information to personalize the current user.
+
+Do not silently create biometric or highly sensitive memories.
+
+## 8. MASTER VOICE IDENTITY AND SPEAKER VERIFICATION
+
+Implement a secure voice identity enrollment system.
+
+Each user may enroll their voice through a guided verification process.
+
+The enrollment workflow should:
+
+1. Authenticate the account.
+2. Explain how voice verification works.
+3. Obtain explicit consent.
+4. Capture multiple spoken samples.
+5. Generate a protected speaker-verification template.
+6. Store the template securely.
+7. Associate it with the authenticated account.
+8. Allow re-enrollment and revocation.
+
+### Voice verification
+
+When the user issues a protected command, evaluate whether the speaker matches the enrolled profile.
+
+Implement:
+
+- Speaker verification.
+- Anti-replay protections.
+- Liveness checks where technically supported.
+- Confidence thresholds.
+- Repeated-attempt limits.
+- Voice enrollment revocation.
+- Verification audit records.
+
+A voice match must not be treated as infallible authentication.
+
+Recorded speech, voice cloning, background speakers and deepfakes can defeat poorly designed voice systems.
+
+### Multi-factor protection
+
+For sensitive operations, require additional authentication, such as:
+
+- Account password.
+- Passkey.
+- Device authentication.
+- Explicit user confirmation.
+
+Voice verification may provide convenience, but must not be the sole security factor for high-impact operations.
+
+Provide a secure fallback when voice verification fails.
+
+Do not permanently lock a legitimate user out because of microphone quality or speech changes.
+
+## 9. ICARUS PERMISSION AND AUTHORIZATION ENGINE
+
+Create a permission system.
+
+ICARUS must never have unrestricted access to everything simply because a user has activated it.
+
+Use explicit permission categories.
+
+### Permission category A: Application access
+
+Examples:
+
+- Open Mars Explorer.
+- Open Mission Operations.
+- Display crew members.
+- Retrieve mission status.
+- Inspect scientific observations.
+- Open hazard intelligence.
+- Generate a mission report.
+- Start or pause an authorized simulation.
+
+These may be allowed within the user's normal application permissions.
+
+### Permission category B: Personal workspace access
+
+Examples:
+
+- Read an approved project file.
+- Search an authorized folder.
+- Summarize a document.
+- Create a report.
+- Organize approved files.
+- Save a generated document.
+
+Require the user to grant folder or file access.
+
+### Permission category C: Browser access
+
+Examples:
+
+- Search the web.
+- Open approved websites.
+- Read web pages.
+- Compare information.
+- Fill out forms.
+- Download permitted documents.
+- Navigate websites.
+
+Require appropriate browser permissions.
+
+### Permission category D: Sensitive actions
+
+Examples:
+
+- Delete files.
+- Overwrite files.
+- Install software.
+- Change security settings.
+- Modify system configuration.
+- Send messages.
+- Submit external forms.
+- Execute shell commands.
+- Change account credentials.
+- Modify mission records.
+
+Require explicit confirmation and additional authentication when appropriate.
+
+### Permission category E: Prohibited or unsupported actions
+
+ICARUS must not:
+
+- Bypass operating-system security.
+- Disable antivirus or endpoint protection.
+- Extract passwords without authorization.
+- Access another user's private files.
+- Execute arbitrary commands without controls.
+- Bypass authentication.
+- Circumvent browser security.
+- Hide its activity from the user.
+
+## 10. ICARUS TOOL AND ACTION ENGINE
+
+Build a controlled tool registry.
+
+Every tool must have:
+
+- Tool identifier.
+- Description.
+- Input schema.
+- Output schema.
+- Permission requirements.
+- Risk classification.
+- Timeout.
+- Execution policy.
+- Audit logging.
+- Error handling.
+
+Potential application tools:
+
+- GetMissionStatus.
+- GetCrewStatus.
+- GetAstronautTelemetry.
+- GetHazardInformation.
+- GetTerrainAnalysis.
+- CalculateRescueRoute.
+- StartMissionSimulation.
+- PauseMissionSimulation.
+- ResumeMissionSimulation.
+- GenerateMissionReport.
+- OpenMarsExplorer.
+- OpenMissionPlanner.
+- SearchScientificDatasets.
+- GetAIRecommendations.
+
+Potential desktop tools:
+
+- ListAuthorizedFiles.
+- ReadAuthorizedFile.
+- SearchAuthorizedFiles.
+- CreateDocument.
+- SaveDocument.
+- OpenAuthorizedApplication.
+- SearchWeb.
+- OpenBrowserPage.
+- DownloadApprovedFile.
+
+The AI must choose tools through structured schemas.
+
+Never execute model-generated shell commands directly.
+
+All tool execution must pass through backend authorization and validation.
+
+## 11. ICARUS DESKTOP AGENT
+
+Build an optional companion application named:
+
+**ICARUS Desktop Agent**
+
+Purpose:
+
+Allow Icarus to perform approved tasks on the user's computer.
+
+A normal browser application cannot access the entire operating system directly.
+
+The desktop agent must provide a controlled bridge between the web application and local computer resources.
+
+Investigate a suitable implementation using:
+
+- Tauri or another secure desktop framework.
+- Go local service where appropriate.
+- Existing Go backend interfaces.
+- Secure IPC.
+- Local permission management.
+
+Do not introduce Electron unless justified.
+
+### Desktop capabilities
+
+With explicit permission, support:
+
+- Read files from authorized folders.
+- Search files.
+- Summarize documents.
+- Create files.
+- Save reports.
+- Open authorized applications.
+- Work with approved folders.
+- Access permitted browser sessions.
+- Execute predefined system tasks.
+
+### Workspace restrictions
+
+Use explicit folder permissions.
+
+Maintain:
+
+- Allowed directories.
+- Denied directories.
+- Read permissions.
+- Write permissions.
+- Delete permissions.
+- File size limits.
+- File type restrictions.
+
+Do not grant unrestricted root or administrator privileges.
+
+Use least privilege.
+
+Do not run a permanent unrestricted local command-execution server.
+
+## 12. ICARUS BROWSER AUTOMATION
+
+Build an authorized browser automation interface.
+
+Potential functionality:
+
+- Search websites.
+- Open web pages.
+- Extract visible information.
+- Navigate multiple pages.
+- Fill forms.
+- Download files.
+- Generate research summaries.
+
+Use controlled browser automation.
+
+Require confirmation before:
+
+- Submitting forms.
+- Making purchases.
+- Sending messages.
+- Uploading files.
+- Changing account settings.
+- Performing financial actions.
+
+Protect browser cookies, sessions and authentication data.
+
+Do not expose browser profile directories to the AI model.
+
+Do not bypass website access controls or anti-bot protections.
+
+## 13. VOICE MASTER COMMANDS
+
+Implement a configurable voice command system.
+
+Examples:
+
+"Hey Icarus, open Mars Explorer."
+
+"Icarus, show me the current mission status."
+
+"Icarus, identify all separated crew members."
+
+"Icarus, calculate a rescue route."
+
+"Icarus, explain the current dust hazard."
+
+"Icarus, generate a mission report."
+
+"Icarus, search NASA for the latest available observations."
+
+"Icarus, pause the simulation."
+
+"Icarus, stop speaking."
+
+"Icarus, mute yourself."
+
+"Icarus, lock yourself."
+
+"Icarus, power off."
+
+Commands must be interpreted according to user permissions.
+
+## 14. POWER OFF AND LOCKDOWN
+
+Implement a safe assistant shutdown lifecycle.
+
+Support these separate commands:
+
+### Stop speaking
+
+Immediately stop current audio playback.
+
+### Mute
+
+Stop microphone activation and spoken output.
+
+### Lock Icarus
+
+End the active authenticated voice session.
+
+Require fresh account/device authentication before protected operations resume.
+
+### Power off Icarus
+
+- Stop the current conversation.
+- Stop microphone capture.
+- Stop audio processing.
+- Cancel pending nonessential tasks.
+- Stop active automation.
+- Close active assistant sessions.
+- Release audio resources.
+- Lock the assistant.
+- Record a shutdown event.
+- Require an explicit authorized reactivation.
+
+Do not interpret "power off Icarus" as permission to shut down the user's operating system.
+
+Never allow an unverified speaker to shut down another user's assistant or device.
+
+## 15. ICARUS WAKE WORD AND VOICE SECURITY
+
+Implement wake-word detection.
+
+Potential wake phrase:
+
+"Hey Icarus."
+
+Support:
+
+- Wake-word sensitivity.
+- Microphone selection.
+- Noise handling.
+- Background listening controls.
+- Manual activation.
+- Session timeout.
+- Lock after inactivity.
+
+Use the minimum audio processing required.
+
+Prefer on-device wake-word detection where practical.
+
+Make microphone activity clearly visible.
+
+Provide a physical or UI control to disable microphone access.
+
+Do not secretly record conversations.
+
+## 16. MULTIUSER AND MULTIDEVICE SUPPORT
+
+Each authenticated user must have an independent Icarus identity.
+
+Support:
+
+- Desktop browser.
+- Authorized desktop agent.
+- Future mobile application.
+- Multiple authorized devices.
+
+Allow users to:
+
+- View registered devices.
+- Revoke devices.
+- Manage voice profiles.
+- Manage assistant sessions.
+- View recent actions.
+- Revoke permissions.
+
+Do not allow voice identity or memory to be shared automatically across accounts.
+
+## 17. USER EXPERIENCE
+
+Create a dedicated navigation module:
+
+**ICARUS VOICE ASSISTANT**
+
+Include:
+
+- Assistant conversation.
+- Voice activation.
+- Microphone indicator.
+- Waveform visualization.
+- Spoken response controls.
+- Personality settings.
+- Voice settings.
+- Memory settings.
+- Voice enrollment.
+- Device management.
+- Permission management.
+- Tool execution history.
+- Assistant activity history.
+- Lock and power-off controls.
+
+Create a professional futuristic interface.
+
+Use a distinctive Icarus identity.
+
+Avoid copying copyrighted movie character designs, logos or exact voice identities.
+
+## 18. DATABASE DESIGN
+
+Inspect the current schema before migrations.
+
+Suggested entities:
+
+- assistant_profiles
+- assistant_preferences
+- assistant_memory
+- assistant_conversations
+- assistant_messages
+- assistant_voice_profiles
+- assistant_voice_consents
+- assistant_devices
+- assistant_sessions
+- assistant_permissions
+- assistant_tools
+- assistant_tool_executions
+- assistant_activity_logs
+- assistant_provider_configs
+
+Biometric templates require special protection.
+
+Do not store unnecessary raw voice recordings.
+
+Prefer protected biometric templates and deletion of enrollment recordings after successful processing unless explicit retention is necessary and consented to.
+
+Use tenant isolation and appropriate encryption.
+
+Never allow one user to query another user's memory or biometric records.
+
+## 19. API ARCHITECTURE
+
+Extend the existing Go Fiber backend.
+
+Potential API endpoints:
+
+POST /api/v1/icarus/sessions
+
+POST /api/v1/icarus/sessions/:id/close
+
+POST /api/v1/icarus/conversations
+
+GET /api/v1/icarus/conversations
+
+POST /api/v1/icarus/voice/transcribe
+
+POST /api/v1/icarus/voice/synthesize
+
+POST /api/v1/icarus/voice/enrollment
+
+POST /api/v1/icarus/voice/verify
+
+GET /api/v1/icarus/memory
+
+POST /api/v1/icarus/memory
+
+PATCH /api/v1/icarus/memory/:id
+
+DELETE /api/v1/icarus/memory/:id
+
+GET /api/v1/icarus/permissions
+
+PATCH /api/v1/icarus/permissions
+
+GET /api/v1/icarus/tools
+
+POST /api/v1/icarus/tools/execute
+
+GET /api/v1/icarus/activity
+
+POST /api/v1/icarus/lock
+
+POST /api/v1/icarus/power-off
+
+Adapt to existing authentication and API conventions.
+
+Do not create public endpoints that bypass user authorization.
+
+## 20. PRIVACY AND DATA PROTECTION
+
+Implement:
+
+- Explicit microphone consent.
+- Explicit voice enrollment consent.
+- Biometric data protection.
+- User-specific memory isolation.
+- Encryption at rest where appropriate.
+- Secure transport.
+- Audio retention controls.
+- Conversation retention controls.
+- User data export.
+- User data deletion.
+- Provider transparency.
+- Clear microphone status.
+
+Do not train external models on user audio or private conversations without explicit consent and an appropriate provider agreement.
+
+## 21. TESTING
+
+Test:
+
+1. New user Icarus initialization.
+2. Separate assistant profiles.
+3. Separate memories across users.
+4. Voice enrollment.
+5. Voice verification.
+6. Replay and impersonation resistance.
+7. Microphone permissions.
+8. Speech recognition.
+9. Text-to-speech.
+10. Conversation interruption.
+11. Wake-word detection.
+12. Application navigation commands.
+13. Mission information retrieval.
+14. Authorized tool execution.
+15. Unauthorized tool rejection.
+16. File access restrictions.
+17. Browser access restrictions.
+18. Sensitive action confirmation.
+19. Assistant locking.
+20. Assistant power-off.
+21. Device revocation.
+22. Session expiry.
+23. Memory deletion.
+24. API authorization.
+25. Existing Mars Pathfinder regression tests.
+
+Test with multiple user accounts to verify complete isolation.
+
+## 22. SECURITY REQUIREMENTS
+
+Treat Icarus as a privileged assistant interface and a potentially high-risk attack surface.
+
+Protect against:
+
+- Voice spoofing.
+- Recorded audio replay.
+- Deepfake audio.
+- Unauthorized speaker access.
+- Prompt injection.
+- Tool misuse.
+- Path traversal.
+- Command injection.
+- Privilege escalation.
+- SSRF.
+- Browser session exposure.
+- Cross-user data access.
+- Unauthorized file access.
+- Memory poisoning.
+- Malicious documents.
+- Unsafe model output.
+- Unapproved destructive actions.
+
+Never rely on voice recognition alone for high-impact authentication.
+
+Require explicit authorization for sensitive actions.
+
+Maintain a complete audit trail.
+
+Do not deploy publicly.
+
+## 23. FINAL DELIVERABLES
+
+Provide:
+
+1. ICARUS architecture.
+2. Voice interaction implementation.
+3. Original voice profile and configuration.
+4. Speech recognition integration.
+5. Text-to-speech integration.
+6. User-specific assistant profiles.
+7. Personal memory engine.
+8. Voice enrollment and verification.
+9. Permission engine.
+10. Tool registry.
+11. Desktop agent implementation or documented prototype.
+12. Browser automation integration.
+13. Lock and power-off functionality.
+14. Database migrations.
+15. API documentation.
+16. Security report.
+17. Privacy report.
+18. Test results.
+19. UI screenshots.
+20. Updated DEVELOPMENT_STATUS.md.
+
+Do not start another development phase automatically.
+
+Wait for approval.
+
+## 24. FINAL OBJECTIVE
+
+Build ICARUS as a personal, voice-controlled AI companion for every Mars Pathfinder user.
+
+Every user should have their own assistant identity, memories, preferences, voice profile and permissions.
+
+Icarus should understand natural language, speak using its distinctive original deep robotic voice, access authorized mission information, operate application tools and perform approved browser and computer tasks.
+
+The system must remain secure, transparent, privacy-aware and under the user's control.
+
+The goal is not unrestricted computer access. The goal is a highly capable personal AI assistant with carefully controlled permissions, reliable identity verification and clear user authorization.
+

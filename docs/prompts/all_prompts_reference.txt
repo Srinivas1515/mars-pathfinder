@@ -1,0 +1,3051 @@
+<USER_REQUEST>
+# MARS PATHFINDER — PHASE 3: ADVANCED HAZARD SIMULATION & ENVIRONMENTAL RISK INTELLIGENCE
+
+## 1. ROLE
+
+Act as a senior planetary scientist, aerospace hazard analyst, atmospheric scientist, geospatial engineer, simulation architect, Python scientific-computing engineer, Go backend engineer and React frontend architect.
+
+You are continuing the existing Mars Pathfinder application.
+
+Phase 1 established the scientific data foundation.
+
+Phase 2 introduced mission operations, crew management, simulated astronaut tracking, telemetry, emergency scenarios and rescue planning.
+
+Your task is to implement Phase 3: Advanced Hazard Simulation and Environmental Risk Intelligence.
+
+Do not create a separate application. Extend the existing application.
+
+## 2. INITIAL CODEBASE AUDIT
+
+Before development:
+
+1. Inspect all existing Phase 1 and Phase 2 modules.
+2. Read DEVELOPMENT_STATUS.md.
+3. Read PHASE_1_ARCHITECTURE.md.
+4. Read PHASE_2_ARCHITECTURE.md.
+5. Read the NASA data source catalog.
+6. Inspect existing terrain and environmental calculations.
+7. Inspect the mission simulation engine.
+8. Inspect the existing rescue and routing algorithms.
+9. Inspect the database and API.
+10. Identify reusable components.
+
+Preserve working features and avoid duplicate implementations.
+
+## 3. HAZARD INTELLIGENCE ENGINE
+
+Create a unified Mars Hazard Intelligence Engine.
+
+It must analyse and represent:
+
+### A. Atmospheric hazards
+
+- Dust storms.
+- Dust opacity changes.
+- Atmospheric temperature variations.
+- Pressure variations.
+- Wind speed and direction where observations support them.
+- Atmospheric density changes.
+- Water-ice cloud observations.
+- Solar and space-weather hazards.
+
+### B. Surface hazards
+
+- Steep slopes.
+- Rocky terrain.
+- Large boulders.
+- Craters.
+- Cliffs.
+- Sand-covered areas.
+- Potentially unstable terrain.
+- Surface roughness.
+- Elevation changes.
+- Terrain discontinuities.
+
+### C. Radiation and solar hazards
+
+- Available radiation observations.
+- Solar energetic particle event information where available.
+- Space-weather model outputs.
+- Solar exposure estimates.
+- Accumulated simulated crew exposure.
+
+### D. Mission operational hazards
+
+- Communication loss.
+- Rover breakdown.
+- Low battery.
+- Low oxygen.
+- Resource shortages.
+- Crew separation.
+- Unexpected movement restrictions.
+
+Do not represent every hazard as a confirmed real-world event.
+
+## 4. NASA DATA INTEGRATION
+
+Reuse Phase 1 data adapters.
+
+Investigate and use relevant observations from:
+
+- NASA MEDA.
+- Mars Climate Sounder.
+- MOLA.
+- HiRISE.
+- THEMIS.
+- NASA PDS.
+- NASA CCMC where suitable.
+- Other verified planetary science datasets.
+
+For every hazard input, retain:
+
+- Original source.
+- Product identifier.
+- Observation time.
+- Retrieval time.
+- Measurement units.
+- Processing level.
+- Spatial coverage.
+- Quality information.
+- Data classification.
+
+Do not treat historical observations as current conditions.
+
+## 5. DUST STORM SIMULATION
+
+Build a configurable dust storm simulator.
+
+Allow users to configure:
+
+- Starting coordinates.
+- Storm intensity.
+- Initial affected radius.
+- Movement direction.
+- Simulated movement speed.
+- Duration.
+- Visibility reduction.
+- Dust opacity.
+- Wind assumptions.
+- Solar power reduction assumptions.
+- Communication degradation assumptions.
+
+Visualize the storm as a geographic area on both Mars maps.
+
+Support:
+
+- Storm creation.
+- Storm progression.
+- Storm pause and resume.
+- Storm intensity changes.
+- Storm dissipation.
+- Multiple simultaneous storm scenarios.
+
+Clearly label generated storm behaviour as SIMULATED.
+
+Do not claim that a simulation represents an actual Mars weather forecast.
+
+## 6. TERRAIN HAZARD ANALYSIS
+
+Extend the existing terrain analysis engine.
+
+Calculate or retrieve:
+
+- Slope.
+- Aspect.
+- Roughness.
+- Elevation variation.
+- Terrain gradients.
+- Known obstacles.
+- Surface classifications where available.
+
+Use higher-resolution HiRISE terrain models for regional analysis where accessible.
+
+Implement terrain hazard classifications with documented thresholds.
+
+Support different mobility profiles:
+
+- Heavy rover.
+- Lightweight rover.
+- Pressurized crew rover.
+- Astronaut walking.
+- Emergency evacuation movement.
+
+Avoid applying rover mobility assumptions directly to human movement.
+
+## 7. ENVIRONMENTAL RISK ENGINE
+
+Build a geographic risk analysis engine.
+
+Generate separate risk layers for:
+
+- Terrain.
+- Atmospheric conditions.
+- Radiation.
+- Solar power availability.
+- Communication.
+- Mission resources.
+
+Create an explainable combined mission risk score.
+
+Every score must expose:
+
+- Input variables.
+- Data sources.
+- Weighting configuration.
+- Calculation method.
+- Missing data.
+- Uncertainty.
+- Limitations.
+
+Do not allow missing observations to automatically become zero risk.
+
+## 8. HAZARD PROPAGATION SIMULATION
+
+Create a scenario engine that can simulate hazards changing over time.
+
+Examples:
+
+- Dust storm expanding over a mission route.
+- A storm approaching a landing location.
+- A rover encountering an increasingly steep region.
+- A crew route becoming unavailable.
+- Reduced solar power affecting rover endurance.
+- Multiple hazards affecting different crew members.
+
+Support time-based simulation and map visualization.
+
+## 9. DYNAMIC ROUTE RISK INTEGRATION
+
+Integrate the hazard engine with Phase 2 rescue planning.
+
+When a hazard appears:
+
+1. Identify affected crew members.
+2. Identify affected route segments.
+3. Calculate alternative routes.
+4. Compare route risk.
+5. Calculate resource implications.
+6. Explain route recommendations.
+7. Allow mission controllers to choose an alternative.
+
+Do not silently replace an existing mission route.
+
+## 10. HAZARD PREDICTION FOUNDATION
+
+Prepare the system for Phase 4 machine learning.
+
+Create structured training-data and feature-extraction pipelines.
+
+Potential features:
+
+- Elevation.
+- Slope.
+- Roughness.
+- Historical dust opacity.
+- Temperature observations.
+- Pressure observations.
+- Wind measurements.
+- Geographic location.
+- Solar longitude.
+- Seasonal context.
+- Observation timestamps.
+
+Do not claim that predictive models have been trained in Phase 3.
+
+## 11. FRONTEND
+
+Create a new navigation module:
+
+HAZARD INTELLIGENCE
+
+Include:
+
+- Hazard overview.
+- Global hazard map.
+- Terrain risk explorer.
+- Atmospheric risk explorer.
+- Radiation and solar information.
+- Dust storm simulator.
+- Scenario configuration.
+- Route impact analysis.
+- Historical observations.
+- Data provenance.
+
+Provide clear visual distinctions between observed, modelled, derived and simulated hazards.
+
+## 12. BACKEND AND DATABASE
+
+Extend the existing Go Fiber API and Python scientific processing architecture.
+
+Suggested database entities:
+
+- hazard_types
+- hazard_observations
+- hazard_events
+- hazard_scenarios
+- hazard_simulations
+- hazard_geometries
+- hazard_predictions
+- route_hazard_intersections
+- environmental_risk_assessments
+
+Reuse existing entities where possible.
+
+Use PostGIS for geographic hazard areas.
+
+Use appropriate time-series storage for temporal observations.
+
+## 13. TESTING
+
+Test:
+
+- Terrain hazard calculations.
+- Geographic intersections.
+- Dust storm simulation.
+- Hazard progression.
+- Time controls.
+- Route hazard intersections.
+- Missing observation handling.
+- Data provenance.
+- Risk score reproducibility.
+- 2D and 3D map synchronization.
+- API persistence.
+- Existing Phase 1 and Phase 2 regression tests.
+
+## 14. SECURITY
+
+Validate uploaded and downloaded datasets.
+
+Prevent SSRF and unsafe file handling.
+
+Validate geographic input.
+
+Secure mission modifications.
+
+Protect simulation APIs from abuse.
+
+Do not deploy publicly.
+
+## 15. FINAL DELIVERABLES
+
+Produce:
+
+- Phase 3 architecture.
+- Hazard engine implementation.
+- Dust storm simulator.
+- Terrain hazard analysis.
+- Environmental risk layers.
+- Dynamic route-risk integration.
+- Database migrations.
+- API documentation.
+- UI screenshots.
+- Test results.
+- Scientific assumptions and limitations.
+- Security observations.
+- Updated DEVELOPMENT_STATUS.md.
+- Phase 4 recommendations.
+
+Do not start Phase 4 automatically.
+
+Wait for approval after completing Phase 3.
+
+The main objective is to enable Mars Pathfinder to identify, simulate, visualize and analyse environmental and operational hazards affecting future Mars missions.
+
+# MARS PATHFINDER — PHASE 4: MACHINE LEARNING & PREDICTIVE ANALYTICS
+
+## 1. ROLE
+
+Act as a senior machine learning researcher, planetary scientist, computer vision engineer, atmospheric data scientist, geospatial AI engineer and MLOps architect.
+
+You are extending the existing Mars Pathfinder platform.
+
+Phase 4 introduces scientifically validated machine learning and predictive analytics.
+
+Do not create artificial claims of predictive accuracy.
+
+Every model must have appropriate training data, validation data, independent testing and documented limitations.
+
+## 2. INITIAL AUDIT
+
+Inspect:
+
+- Phase 1 data ingestion.
+- Phase 2 mission and crew systems.
+- Phase 3 hazard intelligence.
+- Scientific data catalog.
+- Existing processing pipelines.
+- Existing PostgreSQL/PostGIS schema.
+- Existing API architecture.
+- Existing frontend.
+
+Identify suitable data for machine learning.
+
+Do not begin model training until dataset suitability has been evaluated.
+
+## 3. MACHINE LEARNING ARCHITECTURE
+
+Build a modular Python ML platform.
+
+Suggested structure:
+
+processing/ml/
+
+- datasets/
+- preprocessing/
+- feature_engineering/
+- terrain/
+- atmosphere/
+- anomaly_detection/
+- forecasting/
+- evaluation/
+- inference/
+- model_registry/
+- pipelines/
+
+Use suitable existing libraries.
+
+Potential technologies:
+
+- PyTorch.
+- scikit-learn.
+- XGBoost.
+- LightGBM where appropriate.
+- Rasterio.
+- GDAL.
+- NumPy.
+- Pandas.
+- MLflow.
+
+Do not introduce all libraries unnecessarily.
+
+## 4. MODEL 1: TERRAIN CLASSIFICATION
+
+Build a computer vision model to classify Mars surface imagery.
+
+Possible classes:
+
+- Rocky terrain.
+- Sand-covered terrain.
+- Craters.
+- Boulders.
+- Cliffs.
+- Slopes.
+- Flat terrain.
+- Geological formations.
+
+Investigate suitable NASA HiRISE imagery and annotated datasets.
+
+Potential architectures:
+
+- U-Net.
+- DeepLabV3+.
+- ResNet-based classifiers.
+- Vision transformers where justified.
+
+Requirements:
+
+- Dataset documentation.
+- Image preprocessing.
+- Annotation strategy.
+- Training.
+- Validation.
+- Independent testing.
+- Confusion matrix.
+- Precision.
+- Recall.
+- F1 score.
+- Intersection over Union for segmentation.
+
+Display model detections on the Mars map.
+
+Do not claim that the model identifies hazards reliably unless independent testing supports that claim.
+
+## 5. MODEL 2: TERRAIN TRAVERSABILITY
+
+Build a model to estimate terrain traversability.
+
+Possible inputs:
+
+- Slope.
+- Elevation.
+- Roughness.
+- Surface texture.
+- Image-derived features.
+- Terrain classification.
+
+Outputs:
+
+- Traversability estimate.
+- Terrain difficulty.
+- Risk category.
+- Confidence.
+- Explanation of relevant inputs.
+
+Use suitable supervised learning methods.
+
+Ground truth and rover mobility assumptions must be documented.
+
+Do not present an ML classification as a guarantee of physical safety.
+
+## 6. MODEL 3: ATMOSPHERIC TIME-SERIES ANALYSIS
+
+Investigate historical MEDA and MCS observations.
+
+Develop models for:
+
+- Atmospheric temperature trends.
+- Pressure variations.
+- Dust opacity trends.
+- Seasonal patterns.
+- Atmospheric vertical profiles where suitable.
+- Wind patterns where sufficient observations exist.
+
+Potential models:
+
+- LSTM.
+- GRU.
+- Temporal convolutional networks.
+- Temporal Fusion Transformer.
+- Statistical forecasting baselines.
+
+Compare neural networks against simpler statistical baselines.
+
+Use time-aware train, validation and test splits.
+
+Never randomly split highly correlated time-series observations in a way that causes data leakage.
+
+## 7. MODEL 4: DUST AND ATMOSPHERIC HAZARD ESTIMATION
+
+Investigate whether available historical observations support hazard probability estimation.
+
+Possible inputs:
+
+- Dust opacity.
+- Atmospheric temperature.
+- Seasonal position.
+- Location.
+- Historical atmospheric conditions.
+- Relevant observations from other instruments.
+
+Possible outputs:
+
+- Estimated dust activity.
+- Hazard probability.
+- Forecast interval.
+- Confidence range.
+- Data coverage.
+
+Do not promise exact storm timing or location unless the model has been rigorously validated for that task.
+
+If data are insufficient, implement a research prototype and clearly document the limitation.
+
+## 8. MODEL 5: ANOMALY DETECTION
+
+Build anomaly detection for simulated or authenticated mission telemetry.
+
+Identify unusual patterns in:
+
+- Oxygen consumption.
+- Suit pressure.
+- Battery discharge.
+- Temperature.
+- Radiation accumulation.
+- Communication failures.
+- Rover power.
+- Movement speed.
+
+Potential algorithms:
+
+- Isolation Forest.
+- One-Class SVM.
+- Autoencoders.
+- Statistical threshold detection.
+
+Start with transparent rule-based detection as a baseline.
+
+Do not diagnose medical conditions.
+
+## 9. MODEL 6: RESOURCE FORECASTING
+
+Estimate future resource availability.
+
+Inputs:
+
+- Current resources.
+- Consumption rate.
+- Activity level.
+- Mission duration.
+- Environmental assumptions.
+- Equipment state.
+
+Outputs:
+
+- Estimated remaining oxygen.
+- Water availability.
+- Food duration.
+- Battery endurance.
+- Power requirements.
+
+Compare predictions against deterministic physical calculations.
+
+Clearly display assumptions and uncertainty.
+
+## 10. MODEL 7: COMPUTER VISION CHANGE DETECTION
+
+Investigate whether imagery from different observation times can be compared.
+
+Potential applications:
+
+- Surface changes.
+- Dust coverage changes.
+- New image-visible disturbances.
+- Changes in observed terrain features.
+
+Only claim actual surface change when image registration, spatial resolution and observation geometry support that conclusion.
+
+## 11. MODEL EVALUATION AND SCIENTIFIC VALIDATION
+
+Every model must have:
+
+- Dataset source.
+- Dataset version.
+- Data preprocessing description.
+- Training methodology.
+- Validation methodology.
+- Independent test results.
+- Model architecture.
+- Hyperparameters.
+- Evaluation metrics.
+- Confidence and uncertainty reporting.
+- Known limitations.
+
+Check for:
+
+- Data leakage.
+- Class imbalance.
+- Overfitting.
+- Spatial generalization problems.
+- Temporal leakage.
+- Instrument calibration differences.
+- Missing values.
+- Dataset bias.
+
+Compare against appropriate baseline models.
+
+Never fabricate evaluation metrics.
+
+## 12. PREDICTION VISUALIZATION
+
+Create a new module:
+
+AI PREDICTIVE INTELLIGENCE
+
+Show:
+
+- Terrain classification map.
+- Traversability map.
+- Atmospheric trends.
+- Dust-risk estimates.
+- Anomaly alerts.
+- Resource forecasts.
+- Model confidence.
+- Prediction time range.
+- Input data timestamps.
+
+Use separate visual styles for:
+
+OBSERVED
+
+DERIVED
+
+MODELLED
+
+PREDICTED
+
+SIMULATED
+
+UNAVAILABLE
+
+Every prediction must be linked to the model version and input data.
+
+## 13. MODEL SERVING
+
+Create a safe inference architecture.
+
+Use the existing Go API as the application-facing interface.
+
+Python should handle scientific model inference.
+
+Add:
+
+- Input validation.
+- Inference timeouts.
+- Resource limits.
+- Model version tracking.
+- Prediction logging.
+- Error handling.
+- Caching where scientifically appropriate.
+
+Do not allow untrusted user input to execute arbitrary Python code.
+
+## 14. MLOPS
+
+Implement model lifecycle management.
+
+Track:
+
+- Model versions.
+- Training runs.
+- Dataset versions.
+- Evaluation reports.
+- Deployment status.
+- Inference history.
+- Model performance.
+- Model drift indicators.
+
+Do not automatically promote a model to production without passing its validation requirements.
+
+## 15. DATABASE AND API
+
+Reuse existing schemas and introduce migrations where needed.
+
+Potential entities:
+
+- ml_datasets
+- ml_models
+- ml_training_runs
+- ml_evaluation_results
+- ml_predictions
+- ml_prediction_features
+- ml_model_versions
+- ml_inference_logs
+
+Provide appropriate API endpoints for:
+
+- Model catalog.
+- Model details.
+- Prediction requests.
+- Prediction history.
+- Evaluation reports.
+- Model health.
+
+## 16. TESTING
+
+Test:
+
+- Dataset preprocessing.
+- Coordinate alignment.
+- Training reproducibility.
+- Evaluation pipelines.
+- Model inference.
+- Missing data.
+- Invalid inputs.
+- Prediction persistence.
+- Confidence calculations.
+- Model version selection.
+- Existing feature regressions.
+
+Use independent held-out evaluation datasets.
+
+## 17. SECURITY
+
+Protect model files and datasets.
+
+Validate inference requests.
+
+Prevent model deserialization vulnerabilities.
+
+Restrict file uploads.
+
+Protect ML endpoints against resource exhaustion.
+
+Do not expose model secrets.
+
+Do not deploy publicly.
+
+## 18. FINAL DELIVERABLES
+
+Provide:
+
+- ML architecture.
+- Dataset inventory.
+- Trained model inventory.
+- Model evaluation reports.
+- Training methodology.
+- Inference API.
+- Frontend integration.
+- Visual prediction maps.
+- Model limitations.
+- Security findings.
+- Updated documentation.
+- Phase 5 recommendations.
+
+Do not start Phase 5 automatically.
+
+The objective is to build a scientifically responsible Mars AI platform that extracts useful information from planetary observations and produces measurable, explainable and validated predictions.
+
+# MARS PATHFINDER — PHASE 5: AI MISSION ASSISTANT & AUTONOMOUS DECISION-SUPPORT
+
+## 1. ROLE
+
+Act as a senior AI systems architect, aerospace mission operations researcher, autonomous planning engineer, geospatial AI engineer, backend engineer and safety-critical software architect.
+
+Your task is to build an intelligent mission assistant on top of the existing Mars Pathfinder application.
+
+Phase 5 must integrate:
+
+- Scientific data foundation.
+- Crew management.
+- Astronaut telemetry simulation.
+- Emergency scenarios.
+- Hazard intelligence.
+- Machine learning predictions.
+- Rescue planning.
+- Mission resource management.
+
+Do not build a generic chatbot.
+
+Build a mission-aware decision-support system that understands structured mission state and scientific information.
+
+## 2. INITIAL AUDIT
+
+Inspect all previous phases.
+
+Verify that:
+
+- Phase 1 data APIs are working.
+- Phase 2 crew and mission APIs are working.
+- Phase 3 hazard APIs are working.
+- Phase 4 model inference APIs are working.
+
+Do not invent missing APIs.
+
+Document incomplete dependencies.
+
+## 3. AI MISSION ASSISTANT
+
+Create a new module:
+
+**Mars Mission AI Assistant**
+
+The assistant should understand questions such as:
+
+- What is the current mission status?
+- Where are all crew members?
+- Which astronaut is isolated?
+- Which crew member needs assistance?
+- What hazards affect the current route?
+- Which rescue plan has the lowest estimated risk?
+- How much oxygen remains?
+- Which communication links are unavailable?
+- Should the crew continue or consider shelter?
+- What happens if the dust storm expands?
+- What alternative routes exist?
+
+The assistant must retrieve structured information from authorized application APIs.
+
+It must not invent mission data.
+
+## 4. MISSION CONTEXT ENGINE
+
+Build a mission context service.
+
+It should retrieve:
+
+- Mission configuration.
+- Crew positions.
+- Crew telemetry.
+- Current mission time.
+- Resources.
+- Communication status.
+- Active hazards.
+- Terrain conditions.
+- Rescue routes.
+- Scientific observations.
+- ML predictions.
+- Model confidence.
+- Data freshness.
+
+Every value should retain its source and timestamp.
+
+## 5. RECOMMENDATION ENGINE
+
+Build a structured recommendation pipeline.
+
+Each recommendation must contain:
+
+1. Situation.
+2. Relevant evidence.
+3. Data source.
+4. Observation timestamp.
+5. Risk assessment.
+6. Recommended action.
+7. Alternative action.
+8. Expected consequences.
+9. Uncertainty.
+10. Human approval requirement.
+
+Example:
+
+Situation:
+Astronaut C has lost communication.
+
+Evidence:
+Last simulated position is 2.4 km from the main group.
+
+Risk:
+Communication loss and crew separation.
+
+Recommendation:
+Evaluate a route to the last known position while checking alternative communication options.
+
+Alternatives:
+Hold position or move to a designated meeting point.
+
+Explain why the recommendation was generated.
+
+## 6. RESCUE DECISION SUPPORT
+
+Integrate the Phase 2 rescue planner and Phase 3 hazard engine.
+
+When an emergency occurs:
+
+- Identify affected crew members.
+- Identify available information.
+- Identify uncertain or missing information.
+- Retrieve nearby terrain and hazard data.
+- Calculate feasible rescue routes.
+- Compare resource requirements.
+- Evaluate communication availability.
+- Rank possible actions.
+- Explain the ranking.
+
+Never treat the highest-ranked option as automatically safe.
+
+## 7. AI TOOL INTEGRATION
+
+Give the assistant controlled access to application tools.
+
+Potential tools:
+
+- GetMissionStatus.
+- GetCrewPositions.
+- GetCrewTelemetry.
+- GetActiveHazards.
+- GetTerrainAnalysis.
+- GetResourceStatus.
+- GetCommunicationStatus.
+- CalculateRescueRoute.
+- CompareRescuePlans.
+- GetScientificObservations.
+- GetModelPrediction.
+- GenerateMissionReport.
+
+Use typed schemas and strict input validation.
+
+The assistant must not execute arbitrary SQL, shell commands or unrestricted Python code.
+
+All tool permissions must be enforced by the backend.
+
+## 8. NATURAL LANGUAGE MISSION CONTROL
+
+Allow mission controllers to ask questions in natural language.
+
+Examples:
+
+"Show me all isolated astronauts."
+
+"Find the nearest available meeting point."
+
+"Compare the shortest and safest rescue routes."
+
+"Which crew members have low simulated oxygen reserves?"
+
+"Show the dust hazards affecting our destination."
+
+"Explain why the recommended route was selected."
+
+The assistant should return understandable explanations and link to the relevant map, mission or report.
+
+## 9. WHAT-IF ANALYSIS
+
+Implement scenario comparison.
+
+Allow the user to ask:
+
+- What if the storm expands?
+- What if the rover stops working?
+- What if one communication relay becomes unavailable?
+- What if an astronaut has limited mobility?
+- What if oxygen consumption increases?
+- What if the crew must return to base?
+
+The assistant should create a copy of the mission simulation state and evaluate alternative scenarios without modifying the original mission.
+
+Show comparison results.
+
+## 10. AUTONOMOUS PLANNING RESEARCH
+
+Prepare an extensible planning engine.
+
+Investigate:
+
+- Constraint-based planning.
+- Graph search.
+- Multi-objective optimization.
+- Model predictive control.
+- Reinforcement learning where suitable.
+
+Use deterministic and explainable planning as the primary method.
+
+Any learned planning method must be evaluated against a deterministic baseline.
+
+Do not allow an AI model to directly control real equipment or a real astronaut.
+
+## 11. HUMAN-IN-THE-LOOP SAFETY
+
+This is mandatory.
+
+Classify actions:
+
+- INFORMATION_ONLY.
+- RECOMMENDATION.
+- SIMULATION_ACTION.
+- REQUIRES_HUMAN_APPROVAL.
+- NOT_AUTHORIZED.
+
+The assistant may explain and simulate actions.
+
+It must not independently execute consequential real-world mission actions.
+
+Record:
+
+- Recommendation.
+- Evidence.
+- Model version.
+- User decision.
+- Approval timestamp.
+- Resulting simulation outcome.
+
+## 12. KNOWLEDGE AND DOCUMENTATION RETRIEVAL
+
+Allow the assistant to retrieve relevant project documentation and verified scientific metadata.
+
+Use source-grounded answers.
+
+When evidence is unavailable, explicitly say so.
+
+Do not use generic internet knowledge as a replacement for missing mission telemetry.
+
+## 13. FRONTEND
+
+Create a professional AI Mission Assistant interface.
+
+Include:
+
+- Conversation panel.
+- Current mission context.
+- Evidence citations.
+- Suggested actions.
+- Route comparisons.
+- Risk explanations.
+- Scenario comparison.
+- Recommendation history.
+- Human approval controls.
+
+Display source and freshness information next to evidence.
+
+## 14. BACKEND
+
+Extend the existing Go API.
+
+Create controlled AI service interfaces.
+
+Support:
+
+- Mission context retrieval.
+- Recommendation generation.
+- Tool execution.
+- Scenario comparison.
+- Explanation generation.
+- Recommendation persistence.
+- Audit history.
+
+Use the existing authentication and authorization boundaries if available.
+
+If authentication is not implemented, clearly document that the assistant is for controlled local development only.
+
+## 15. EVALUATION
+
+Build an AI evaluation suite.
+
+Test:
+
+- Correct mission context retrieval.
+- Hallucination resistance.
+- Incorrect tool arguments.
+- Missing telemetry.
+- Stale observations.
+- Conflicting evidence.
+- Invalid recommendations.
+- Unsafe action requests.
+- Prompt injection from external data.
+- Unauthorized tool calls.
+
+Test with predefined mission emergency scenarios.
+
+Every critical recommendation must be traceable to evidence and deterministic calculations.
+
+## 16. SECURITY
+
+Treat all external data and retrieved documents as untrusted input.
+
+Protect against prompt injection.
+
+Restrict tool execution.
+
+Enforce backend authorization.
+
+Protect secrets.
+
+Log consequential actions.
+
+Never allow the assistant to bypass API permissions.
+
+Do not deploy publicly.
+
+## 17. FINAL DELIVERABLES
+
+Provide:
+
+- AI assistant architecture.
+- Mission context engine.
+- Tool registry.
+- Recommendation engine.
+- Rescue decision-support integration.
+- What-if analysis.
+- Human approval workflow.
+- AI evaluation report.
+- Security assessment observations.
+- Screenshots.
+- API documentation.
+- Updated development documentation.
+- Phase 6 recommendations.
+
+Do not start Phase 6 automatically.
+
+The objective is to create a mission-aware AI assistant that can understand Mars mission situations, analyse evidence, compare alternatives and support human decision-making without pretending to be an autonomous authority over human safety.
+
+# MARS PATHFINDER — PHASE 6: MARS DIGITAL TWIN & ADVANCED MISSION REPLAY
+
+## 1. ROLE
+
+Act as a senior digital-twin architect, aerospace simulation engineer, geospatial systems engineer, distributed systems architect, scientific visualization engineer and mission operations researcher.
+
+You are extending the existing Mars Pathfinder platform.
+
+Build a comprehensive Mars Mission Digital Twin.
+
+Do not create a separate application.
+
+## 2. INITIAL AUDIT
+
+Inspect Phases 1–5.
+
+Verify the existing:
+
+- Mars globe and maps.
+- Scientific data platform.
+- Mission management.
+- Crew simulation.
+- Telemetry.
+- Hazard simulation.
+- ML predictions.
+- Rescue algorithms.
+- AI recommendations.
+- Database.
+- API.
+
+Reuse existing components.
+
+Do not duplicate simulation or data-processing functionality.
+
+## 3. DIGITAL TWIN CONCEPT
+
+Create a virtual representation of a complete Mars exploration mission.
+
+The digital twin should represent:
+
+- Mars geographic environment.
+- Landing locations.
+- Crew members.
+- Rovers.
+- Habitats.
+- Mission vehicles.
+- Communication nodes.
+- Resources.
+- Terrain.
+- Environmental conditions.
+- Hazards.
+- Mission objectives.
+- Mission events.
+
+It should update according to simulated events and any verified incoming observations.
+
+Clearly distinguish:
+
+- Static scientific data.
+- Historical observations.
+- Recently published observations.
+- Modelled environmental conditions.
+- AI predictions.
+- Simulated mission state.
+- Authenticated external telemetry.
+
+## 4. TIME ENGINE
+
+Create a centralized mission simulation clock.
+
+Support:
+
+- Mission start time.
+- Mission elapsed time.
+- Simulation time.
+- Pause.
+- Resume.
+- Reset.
+- Time-step advancement.
+- Time acceleration.
+- Time reversal through replay.
+- Event scheduling.
+
+Maintain consistent time handling.
+
+Where relevant, represent Martian sols separately from Earth time.
+
+Do not mix UTC, Earth local time and Mars mission time.
+
+## 5. DIGITAL TWIN STATE ENGINE
+
+Build a structured mission state model.
+
+The state must contain:
+
+- Crew positions.
+- Crew conditions.
+- Rover positions.
+- Vehicle states.
+- Resource quantities.
+- Communication status.
+- Hazard states.
+- Environmental conditions.
+- Mission objectives.
+- Active routes.
+- Mission events.
+
+Support state snapshots.
+
+Support reconstruction of a previous mission state from recorded events.
+
+## 6. EVENT-DRIVEN MISSION ARCHITECTURE
+
+Implement a reliable mission event system.
+
+Potential events:
+
+- Mission created.
+- Mission started.
+- Crew member moved.
+- Crew separated.
+- Hazard appeared.
+- Storm intensified.
+- Communication failed.
+- Resource changed.
+- Astronaut entered distress.
+- Rescue plan generated.
+- Route changed.
+- Crew reunited.
+- Mission completed.
+
+Each event should have:
+
+- Unique identifier.
+- Mission identifier.
+- Event type.
+- Event timestamp.
+- Simulation timestamp.
+- Source.
+- Payload schema.
+- Event version.
+- Provenance.
+- Data classification.
+
+Ensure events can be replayed deterministically where possible.
+
+Avoid applying the same event twice.
+
+## 7. MISSION REPLAY ENGINE
+
+Create a complete mission replay interface.
+
+Users should be able to:
+
+- Select a previous mission.
+- View the event timeline.
+- Play the mission.
+- Pause.
+- Resume.
+- Change playback speed.
+- Move backward and forward.
+- Select an exact mission timestamp.
+- Inspect crew positions.
+- Inspect hazard progression.
+- Inspect resource consumption.
+- Inspect communication changes.
+- Inspect rescue decisions.
+
+Support different playback speeds.
+
+Preserve historical mission state.
+
+Do not overwrite the original mission during replay.
+
+## 8. SCENARIO COMPARISON ENGINE
+
+Allow users to duplicate a mission and run alternative scenarios.
+
+Examples:
+
+Scenario A:
+Normal mission.
+
+Scenario B:
+Dust storm begins earlier.
+
+Scenario C:
+Communication relay becomes unavailable.
+
+Scenario D:
+One astronaut becomes injured.
+
+Scenario E:
+Rover battery decreases faster.
+
+Scenario F:
+Alternative rescue route is selected.
+
+Compare:
+
+- Mission completion.
+- Crew separation duration.
+- Rescue duration.
+- Resource consumption.
+- Route distance.
+- Hazard exposure.
+- Communication availability.
+- Emergency frequency.
+- Decision outcomes.
+
+Use identical initial conditions when performing controlled comparisons.
+
+## 9. 3D DIGITAL TWIN VISUALIZATION
+
+Extend CesiumJS.
+
+Show:
+
+- Mars terrain.
+- Crew members.
+- Rovers.
+- Habitats.
+- Landing sites.
+- Mission routes.
+- Hazard areas.
+- Communication links.
+- Resource locations.
+- Time-based movement paths.
+
+Allow the user to inspect individual objects.
+
+Add a synchronized timeline.
+
+Preserve 2D and 3D coordinate consistency.
+
+Do not use decorative 3D effects that imply scientific precision the underlying data does not support.
+
+## 10. MISSION PERFORMANCE ANALYTICS
+
+Create a digital twin analytics dashboard.
+
+Calculate:
+
+- Mission duration.
+- Total travel distance.
+- Resource consumption.
+- Crew separation duration.
+- Rescue response time.
+- Route efficiency.
+- Hazard exposure estimates.
+- Communication availability.
+- Mission objective completion.
+- Scenario comparison results.
+
+Explain calculation methods.
+
+Distinguish measured values from simulated outcomes.
+
+## 11. DIGITAL TWIN SYNCHRONIZATION
+
+Prepare the architecture for future external data synchronization.
+
+Allow supported data adapters to update the digital twin when verified new observations arrive.
+
+Do not assume that all external observations are continuous.
+
+Track:
+
+- Observation time.
+- Retrieval time.
+- Processing time.
+- Synchronization status.
+- Data source.
+- Data quality.
+
+Do not allow stale data to silently overwrite newer verified data.
+
+## 12. REPORT GENERATION
+
+Allow users to export:
+
+- Mission summary.
+- Crew movement history.
+- Emergency timeline.
+- Hazard progression.
+- Rescue route comparison.
+- Resource analysis.
+- Mission performance.
+- Scenario comparison.
+- AI recommendation history.
+- Scientific data provenance.
+
+Include clear statements identifying simulated and observed information.
+
+## 13. DATABASE DESIGN
+
+Inspect existing database structures.
+
+Add only necessary entities.
+
+Potential entities:
+
+- digital_twin_instances
+- mission_state_snapshots
+- mission_events
+- mission_event_versions
+- scenario_branches
+- replay_sessions
+- mission_analytics
+- twin_sync_logs
+- mission_object_history
+
+Use appropriate indexes.
+
+Maintain event ordering and consistency.
+
+## 14. FRONTEND
+
+Create:
+
+**Mars Digital Twin**
+
+Sections:
+
+- Live Mission View.
+- Mission Timeline.
+- Replay Center.
+- Scenario Comparison.
+- Mission Analytics.
+- Object Inspector.
+- Data Synchronization.
+
+Build an intuitive time-control interface.
+
+Show the current simulation timestamp prominently.
+
+Clearly label historical replay and current simulation states.
+
+## 15. PERFORMANCE
+
+The digital twin may contain large event histories and geospatial datasets.
+
+Implement:
+
+- Efficient event retrieval.
+- Time-based pagination.
+- State snapshots.
+- Incremental replay.
+- Spatial filtering.
+- Efficient rendering.
+- Caching.
+- Background processing.
+
+Avoid loading an entire mission history into the browser at once.
+
+## 16. TESTING
+
+Test:
+
+- Event ordering.
+- Duplicate event prevention.
+- State reconstruction.
+- Snapshot consistency.
+- Replay determinism.
+- Time controls.
+- Scenario branching.
+- 2D/3D synchronization.
+- Mission comparisons.
+- Historical state integrity.
+- Data freshness.
+- Persistence.
+- Performance.
+- Existing feature regressions.
+
+## 17. SECURITY
+
+Protect mission histories and event data.
+
+Validate replay requests.
+
+Prevent unauthorized mission modifications.
+
+Protect report generation.
+
+Ensure that historical mission records cannot be silently altered.
+
+Maintain audit trails.
+
+Do not deploy publicly.
+
+## 18. FINAL DELIVERABLES
+
+Provide:
+
+- Digital twin architecture.
+- Mission state engine.
+- Event system.
+- Time engine.
+- Replay engine.
+- Scenario comparison.
+- 3D visualization.
+- Analytics.
+- Database migrations.
+- API documentation.
+- Performance report.
+- Test report.
+- Security observations.
+- Updated documentation.
+
+Do not start the final security and deployment gate automatically.
+
+Wait for approval.
+
+The objective is to create a complete interactive Mars mission digital twin where users can understand what happened, why it happened, how decisions affected the mission and what alternative outcomes could have occurred.
+
+# MARS PATHFINDER — PHASE 7: ICARUS — PERSONAL AI VOICE ASSISTANT, VOICE IDENTITY, MEMORY AND CONTROLLED COMPUTER AUTOMATION
+
+## 1. ROLE
+
+Act as a senior AI architect, voice AI engineer, speech recognition engineer, text-to-speech engineer, cybersecurity architect, biometric authentication specialist, distributed systems engineer, desktop automation engineer, Go backend engineer and React/TypeScript architect.
+
+You are continuing development of the existing Mars Pathfinder application.
+
+Your task is to build Phase 7:
+
+**ICARUS — Intelligent Conversational Autonomous Robotic User System.**
+
+ICARUS is a personalized, voice-controlled AI assistant that can communicate naturally with users, understand commands, remember permitted personal preferences, interact with Mars Pathfinder and execute authorized computer and browser tasks.
+
+Do not create a separate Mars Pathfinder application.
+
+Extend the existing system.
+
+Do not rebuild previously completed modules.
+
+## 2. INITIAL PROJECT AUDIT
+
+Before implementation:
+
+1. Inspect all existing project phases.
+2. Read DEVELOPMENT_STATUS.md.
+3. Inspect the Phase 5 AI Mission Assistant.
+4. Inspect the Phase 6 Digital Twin.
+5. Inspect existing authentication and authorization.
+6. Inspect the Go Fiber API.
+7. Inspect the React frontend.
+8. Inspect Python AI services.
+9. Inspect database architecture.
+10. Inspect existing AI model and tool interfaces.
+11. Identify existing speech, audio and notification functionality, if any.
+
+Reuse existing functionality where appropriate.
+
+Do not introduce duplicate AI agents or duplicate mission-context services.
+
+Document missing prerequisites.
+
+## 3. ICARUS IDENTITY AND PERSONALITY
+
+Create a dedicated assistant named:
+
+# ICARUS
+
+Full name:
+
+**Intelligent Conversational Autonomous Robotic User System**
+
+Personality:
+
+- Intelligent.
+- Calm.
+- Confident.
+- Analytical.
+- Professional.
+- Helpful.
+- Mission-oriented.
+- Slightly futuristic.
+- Natural and conversational.
+- Capable of explaining complex information simply.
+
+### Voice personality
+
+Create an original masculine synthetic voice.
+
+Desired characteristics:
+
+- Deep male vocal range.
+- Rich, resonant bass.
+- Controlled robotic texture.
+- Clear pronunciation.
+- Slightly metallic undertone.
+- Calm and authoritative delivery.
+- Natural conversational pacing.
+- Subtle futuristic digital character.
+- Emotionally controlled rather than excessively expressive.
+
+The voice should evoke a cinematic humanoid robotic AI assistant, with broad characteristics similar to the type of futuristic robotic voice the user likes.
+
+Do not clone or reproduce the exact Ultron voice, James Spader's voice, or another identifiable actor's voice.
+
+Create an original Icarus voice identity.
+
+The user should be able to adjust:
+
+- Voice depth.
+- Speaking speed.
+- Pitch.
+- Speech intensity.
+- Robotic effect.
+- Pronunciation.
+- Volume.
+- Response length.
+
+Support alternative voices for accessibility.
+
+## 4. VOICE INTERACTION ENGINE
+
+Build a complete voice interaction system.
+
+The user should be able to:
+
+- Activate Icarus using a wake phrase.
+- Speak naturally.
+- Ask questions.
+- Give commands.
+- Interrupt speech.
+- Resume interrupted conversations.
+- Ask follow-up questions.
+- Switch between voice and text.
+- Receive spoken answers.
+- Control speech speed.
+- Mute the assistant.
+
+Suggested wake phrase:
+
+"Hey Icarus."
+
+Support a configurable wake phrase.
+
+Implement:
+
+- Speech-to-text.
+- Intent recognition.
+- Conversation context.
+- AI response generation.
+- Text-to-speech.
+- Audio playback.
+- Voice activity detection.
+- Noise handling.
+- Interruption detection.
+- Session management.
+
+The assistant should support streaming responses where the selected provider allows it.
+
+Avoid requiring the user to press a button for every sentence during an active authorized voice session.
+
+Provide a clear microphone indicator.
+
+Never activate microphone capture secretly.
+
+## 5. SPEECH RECOGNITION AND TEXT-TO-SPEECH PROVIDER ARCHITECTURE
+
+Create provider-independent interfaces.
+
+Potential speech-to-text providers:
+
+- OpenAI speech recognition services.
+- Whisper-based local processing.
+- Other compatible speech recognition providers.
+- Browser speech recognition where supported.
+
+Potential text-to-speech providers:
+
+- OpenAI text-to-speech services.
+- Compatible external neural TTS providers.
+- Local TTS models.
+
+Do not hardcode one vendor into the entire application.
+
+Create a provider registry.
+
+Support:
+
+- Provider selection.
+- API configuration.
+- Authentication.
+- Connection status.
+- Error handling.
+- Usage tracking.
+- Fallback providers.
+- Local processing where available.
+
+Never expose provider API keys in frontend code.
+
+Do not claim local speech processing if audio is sent to a cloud provider.
+
+Display the active audio-processing mode and provider.
+
+## 6. PERSONALIZED ICARUS FOR EVERY USER
+
+Each user must receive an independent Icarus instance at the application level.
+
+Personalization must be scoped to the authenticated user.
+
+Each user's assistant should have its own:
+
+- Assistant identifier.
+- User identifier.
+- Conversation history.
+- Memory records.
+- Voice preferences.
+- Personality settings.
+- Language preferences.
+- Authorized tools.
+- Permissions.
+- Voice enrollment status.
+- Interaction settings.
+
+Example:
+
+User A has their own Icarus.
+
+User B has a different Icarus.
+
+User A must never access User B's memories, conversations, voice profile or private files.
+
+Enforce tenant isolation in the backend and database.
+
+Do not rely on frontend filtering for privacy.
+
+## 7. ICARUS PERSONAL MEMORY ENGINE
+
+Build a personalized memory system.
+
+Icarus should be able to remember user-approved information such as:
+
+- Preferred name.
+- Communication preferences.
+- Preferred voice.
+- Preferred language.
+- Frequently used modules.
+- Active missions.
+- Saved mission context.
+- Frequently used workflows.
+- Approved project information.
+- User-defined instructions.
+
+Support:
+
+### Short-term memory
+
+Retain current conversation context.
+
+### Long-term memory
+
+Store explicitly permitted personal preferences and useful information.
+
+### Project memory
+
+Maintain context for the user's authorized Mars Pathfinder missions and projects.
+
+### Memory controls
+
+Allow users to:
+
+- View stored memories.
+- Search memories.
+- Edit memories.
+- Delete memories.
+- Disable memory.
+- Clear conversation history.
+- Export personal memory.
+- Control retention.
+
+Do not store sensitive information unnecessarily.
+
+Do not use another user's information to personalize the current user.
+
+Do not silently create biometric or highly sensitive memories.
+
+## 8. MASTER VOICE IDENTITY AND SPEAKER VERIFICATION
+
+Implement a secure voice identity enrollment system.
+
+Each user may enroll their voice through a guided verification process.
+
+The enrollment workflow should:
+
+1. Authenticate the account.
+2. Explain how voice verification works.
+3. Obtain explicit consent.
+4. Capture multiple spoken samples.
+5. Generate a protected speaker-verification template.
+6. Store the template securely.
+7. Associate it with the authenticated account.
+8. Allow re-enrollment and revocation.
+
+### Voice verification
+
+When the user issues a protected command, evaluate whether the speaker matches the enrolled profile.
+
+Implement:
+
+- Speaker verification.
+- Anti-replay protections.
+- Liveness checks where technically supported.
+- Confidence thresholds.
+- Repeated-attempt limits.
+- Voice enrollment revocation.
+- Verification audit records.
+
+A voice match must not be treated as infallible authentication.
+
+Recorded speech, voice cloning, background speakers and deepfakes can defeat poorly designed voice systems.
+
+### Multi-factor protection
+
+For sensitive operations, require additional authentication, such as:
+
+- Account password.
+- Passkey.
+- Device authentication.
+- Explicit user confirmation.
+
+Voice verification may provide convenience, but must not be the sole security factor for high-impact operations.
+
+Provide a secure fallback when voice verification fails.
+
+Do not permanently lock a legitimate user out because of microphone quality or speech changes.
+
+## 9. ICARUS PERMISSION AND AUTHORIZATION ENGINE
+
+Create a permission system.
+
+ICARUS must never have unrestricted access to everything simply because a user has activated it.
+
+Use explicit permission categories.
+
+### Permission category A: Application access
+
+Examples:
+
+- Open Mars Explorer.
+- Open Mission Operations.
+- Display crew members.
+- Retrieve mission status.
+- Inspect scientific observations.
+- Open hazard intelligence.
+- Generate a mission report.
+- Start or pause an authorized simulation.
+
+These may be allowed within the user's normal application permissions.
+
+### Permission category B: Personal workspace access
+
+Examples:
+
+- Read an approved project file.
+- Search an authorized folder.
+- Summarize a document.
+- Create a report.
+- Organize approved files.
+- Save a generated document.
+
+Require the user to grant folder or file access.
+
+### Permission category C: Browser access
+
+Examples:
+
+- Search the web.
+- Open approved websites.
+- Read web pages.
+- Compare information.
+- Fill out forms.
+- Download permitted documents.
+- Navigate websites.
+
+Require appropriate browser permissions.
+
+### Permission category D: Sensitive actions
+
+Examples:
+
+- Delete files.
+- Overwrite files.
+- Install software.
+- Change security settings.
+- Modify system configuration.
+- Send messages.
+- Submit external forms.
+- Execute shell commands.
+- Change account credentials.
+- Modify mission records.
+
+Require explicit confirmation and additional authentication when appropriate.
+
+### Permission category E: Prohibited or unsupported actions
+
+ICARUS must not:
+
+- Bypass operating-system security.
+- Disable antivirus or endpoint protection.
+- Extract passwords without authorization.
+- Access another user's private files.
+- Execute arbitrary commands without controls.
+- Bypass authentication.
+- Circumvent browser security.
+- Hide its activity from the user.
+
+## 10. ICARUS TOOL AND ACTION ENGINE
+
+Build a controlled tool registry.
+
+Every tool must have:
+
+- Tool identifier.
+- Description.
+- Input schema.
+- Output schema.
+- Permission requirements.
+- Risk classification.
+- Timeout.
+- Execution policy.
+- Audit logging.
+- Error handling.
+
+Potential application tools:
+
+- GetMissionStatus.
+- GetCrewStatus.
+- GetAstronautTelemetry.
+- GetHazardInformation.
+- GetTerrainAnalysis.
+- CalculateRescueRoute.
+- StartMissionSimulation.
+- PauseMissionSimulation.
+- ResumeMissionSimulation.
+- GenerateMissionReport.
+- OpenMarsExplorer.
+- OpenMissionPlanner.
+- SearchScientificDatasets.
+- GetAIRecommendations.
+
+Potential desktop tools:
+
+- ListAuthorizedFiles.
+- ReadAuthorizedFile.
+- SearchAuthorizedFiles.
+- CreateDocument.
+- SaveDocument.
+- OpenAuthorizedApplication.
+- SearchWeb.
+- OpenBrowserPage.
+- DownloadApprovedFile.
+
+The AI must choose tools through structured schemas.
+
+Never execute model-generated shell commands directly.
+
+All tool execution must pass through backend authorization and validation.
+
+## 11. ICARUS DESKTOP AGENT
+
+Build an optional companion application named:
+
+**ICARUS Desktop Agent**
+
+Purpose:
+
+Allow Icarus to perform approved tasks on the user's computer.
+
+A normal browser application cannot access the entire operating system directly.
+
+The desktop agent must provide a controlled bridge between the web application and local computer resources.
+
+Investigate a suitable implementation using:
+
+- Tauri or another secure desktop framework.
+- Go local service where appropriate.
+- Existing Go backend interfaces.
+- Secure IPC.
+- Local permission management.
+
+Do not introduce Electron unless justified.
+
+### Desktop capabilities
+
+With explicit permission, support:
+
+- Read files from authorized folders.
+- Search files.
+- Summarize documents.
+- Create files.
+- Save reports.
+- Open authorized applications.
+- Work with approved folders.
+- Access permitted browser sessions.
+- Execute predefined system tasks.
+
+### Workspace restrictions
+
+Use explicit folder permissions.
+
+Maintain:
+
+- Allowed directories.
+- Denied directories.
+- Read permissions.
+- Write permissions.
+- Delete permissions.
+- File size limits.
+- File type restrictions.
+
+Do not grant unrestricted root or administrator privileges.
+
+Use least privilege.
+
+Do not run a permanent unrestricted local command-execution server.
+
+## 12. ICARUS BROWSER AUTOMATION
+
+Build an authorized browser automation interface.
+
+Potential functionality:
+
+- Search websites.
+- Open web pages.
+- Extract visible information.
+- Navigate multiple pages.
+- Fill forms.
+- Download files.
+- Generate research summaries.
+
+Use controlled browser automation.
+
+Require confirmation before:
+
+- Submitting forms.
+- Making purchases.
+- Sending messages.
+- Uploading files.
+- Changing account settings.
+- Performing financial actions.
+
+Protect browser cookies, sessions and authentication data.
+
+Do not expose browser profile directories to the AI model.
+
+Do not bypass website access controls or anti-bot protections.
+
+## 13. VOICE MASTER COMMANDS
+
+Implement a configurable voice command system.
+
+Examples:
+
+"Hey Icarus, open Mars Explorer."
+
+"Icarus, show me the current mission status."
+
+"Icarus, identify all separated crew members."
+
+"Icarus, calculate a rescue route."
+
+"Icarus, explain the current dust hazard."
+
+"Icarus, generate a mission report."
+
+"Icarus, search NASA for the latest available observations."
+
+"Icarus, pause the simulation."
+
+"Icarus, stop speaking."
+
+"Icarus, mute yourself."
+
+"Icarus, lock yourself."
+
+"Icarus, power off."
+
+Commands must be interpreted according to user permissions.
+
+## 14. POWER OFF AND LOCKDOWN
+
+Implement a safe assistant shutdown lifecycle.
+
+Support these separate commands:
+
+### Stop speaking
+
+Immediately stop current audio playback.
+
+### Mute
+
+Stop microphone activation and spoken output.
+
+### Lock Icarus
+
+End the active authenticated voice session.
+
+Require fresh account/device authentication before protected operations resume.
+
+### Power off Icarus
+
+- Stop the current conversation.
+- Stop microphone capture.
+- Stop audio processing.
+- Cancel pending nonessential tasks.
+- Stop active automation.
+- Close active assistant sessions.
+- Release audio resources.
+- Lock the assistant.
+- Record a shutdown event.
+- Require an explicit authorized reactivation.
+
+Do not interpret "power off Icarus" as permission to shut down the user's operating system.
+
+Never allow an unverified speaker to shut down another user's assistant or device.
+
+## 15. ICARUS WAKE WORD AND VOICE SECURITY
+
+Implement wake-word detection.
+
+Potential wake phrase:
+
+"Hey Icarus."
+
+Support:
+
+- Wake-word sensitivity.
+- Microphone selection.
+- Noise handling.
+- Background listening controls.
+- Manual activation.
+- Session timeout.
+- Lock after inactivity.
+
+Use the minimum audio processing required.
+
+Prefer on-device wake-word detection where practical.
+
+Make microphone activity clearly visible.
+
+Provide a physical or UI control to disable microphone access.
+
+Do not secretly record conversations.
+
+## 16. MULTIUSER AND MULTIDEVICE SUPPORT
+
+Each authenticated user must have an independent Icarus identity.
+
+Support:
+
+- Desktop browser.
+- Authorized desktop agent.
+- Future mobile application.
+- Multiple authorized devices.
+
+Allow users to:
+
+- View registered devices.
+- Revoke devices.
+- Manage voice profiles.
+- Manage assistant sessions.
+- View recent actions.
+- Revoke permissions.
+
+Do not allow voice identity or memory to be shared automatically across accounts.
+
+## 17. USER EXPERIENCE
+
+Create a dedicated navigation module:
+
+**ICARUS VOICE ASSISTANT**
+
+Include:
+
+- Assistant conversation.
+- Voice activation.
+- Microphone indicator.
+- Waveform visualization.
+- Spoken response controls.
+- Personality settings.
+- Voice settings.
+- Memory settings.
+- Voice enrollment.
+- Device management.
+- Permission management.
+- Tool execution history.
+- Assistant activity history.
+- Lock and power-off controls.
+
+Create a professional futuristic interface.
+
+Use a distinctive Icarus identity.
+
+Avoid copying copyrighted movie character designs, logos or exact voice identities.
+
+## 18. DATABASE DESIGN
+
+Inspect the current schema before migrations.
+
+Suggested entities:
+
+- assistant_profiles
+- assistant_preferences
+- assistant_memory
+- assistant_conversations
+- assistant_messages
+- assistant_voice_profiles
+- assistant_voice_consents
+- assistant_devices
+- assistant_sessions
+- assistant_permissions
+- assistant_tools
+- assistant_tool_executions
+- assistant_activity_logs
+- assistant_provider_configs
+
+Biometric templates require special protection.
+
+Do not store unnecessary raw voice recordings.
+
+Prefer protected biometric templates and deletion of enrollment recordings after successful processing unless explicit retention is necessary and consented to.
+
+Use tenant isolation and appropriate encryption.
+
+Never allow one user to query another user's memory or biometric records.
+
+## 19. API ARCHITECTURE
+
+Extend the existing Go Fiber backend.
+
+Potential API endpoints:
+
+POST /api/v1/icarus/sessions
+
+POST /api/v1/icarus/sessions/:id/close
+
+POST /api/v1/icarus/conversations
+
+GET /api/v1/icarus/conversations
+
+POST /api/v1/icarus/voice/transcribe
+
+POST /api/v1/icarus/voice/synthesize
+
+POST /api/v1/icarus/voice/enrollment
+
+POST /api/v1/icarus/voice/verify
+
+GET /api/v1/icarus/memory
+
+POST /api/v1/icarus/memory
+
+PATCH /api/v1/icarus/memory/:id
+
+DELETE /api/v1/icarus/memory/:id
+
+GET /api/v1/icarus/permissions
+
+PATCH /api/v1/icarus/permissions
+
+GET /api/v1/icarus/tools
+
+POST /api/v1/icarus/tools/execute
+
+GET /api/v1/icarus/activity
+
+POST /api/v1/icarus/lock
+
+POST /api/v1/icarus/power-off
+
+Adapt to existing authentication and API conventions.
+
+Do not create public endpoints that bypass user authorization.
+
+## 20. PRIVACY AND DATA PROTECTION
+
+Implement:
+
+- Explicit microphone consent.
+- Explicit voice enrollment consent.
+- Biometric data protection.
+- User-specific memory isolation.
+- Encryption at rest where appropriate.
+- Secure transport.
+- Audio retention controls.
+- Conversation retention controls.
+- User data export.
+- User data deletion.
+- Provider transparency.
+- Clear microphone status.
+
+Do not train external models on user audio or private conversations without explicit consent and an appropriate provider agreement.
+
+## 21. TESTING
+
+Test:
+
+1. New user Icarus initialization.
+2. Separate assistant profiles.
+3. Separate memories across users.
+4. Voice enrollment.
+5. Voice verification.
+6. Replay and impersonation resistance.
+7. Microphone permissions.
+8. Speech recognition.
+9. Text-to-speech.
+10. Conversation interruption.
+11. Wake-word detection.
+12. Application navigation commands.
+13. Mission information retrieval.
+14. Authorized tool execution.
+15. Unauthorized tool rejection.
+16. File access restrictions.
+17. Browser access restrictions.
+18. Sensitive action confirmation.
+19. Assistant locking.
+20. Assistant power-off.
+21. Device revocation.
+22. Session expiry.
+23. Memory deletion.
+24. API authorization.
+25. Existing Mars Pathfinder regression tests.
+
+Test with multiple user accounts to verify complete isolation.
+
+## 22. SECURITY REQUIREMENTS
+
+Treat Icarus as a privileged assistant interface and a potentially high-risk attack surface.
+
+Protect against:
+
+- Voice spoofing.
+- Recorded audio replay.
+- Deepfake audio.
+- Unauthorized speaker access.
+- Prompt injection.
+- Tool misuse.
+- Path traversal.
+- Command injection.
+- Privilege escalation.
+- SSRF.
+- Browser session exposure.
+- Cross-user data access.
+- Unauthorized file access.
+- Memory poisoning.
+- Malicious documents.
+- Unsafe model output.
+- Unapproved destructive actions.
+
+Never rely on voice recognition alone for high-impact authentication.
+
+Require explicit authorization for sensitive actions.
+
+Maintain a complete audit trail.
+
+Do not deploy publicly.
+
+## 23. FINAL DELIVERABLES
+
+Provide:
+
+1. ICARUS architecture.
+2. Voice interaction implementation.
+3. Original voice profile and configuration.
+4. Speech recognition integration.
+5. Text-to-speech integration.
+6. User-specific assistant profiles.
+7. Personal memory engine.
+8. Voice enrollment and verification.
+9. Permission engine.
+10. Tool registry.
+11. Desktop agent implementation or documented prototype.
+12. Browser automation integration.
+13. Lock and power-off functionality.
+14. Database migrations.
+15. API documentation.
+16. Security report.
+17. Privacy report.
+18. Test results.
+19. UI screenshots.
+20. Updated DEVELOPMENT_STATUS.md.
+
+Do not start another development phase automatically.
+
+Wait for approval.
+
+## 24. FINAL OBJECTIVE
+
+Build ICARUS as a personal, voice-controlled AI companion for every Mars Pathfinder user.
+
+Every user should have their own assistant identity, memories, preferences, voice profile and permissions.
+
+Icarus should understand natural language, speak using its distinctive original deep robotic voice, access authorized mission information, operate application tools and perform approved browser and computer tasks.
+
+The system must remain secure, transparent, privacy-aware and under the user's control.
+
+The goal is not unrestricted computer access. The goal is a highly capable personal AI assistant with carefully controlled permissions, reliable identity verification and clear user authorization.
+
+# MARS PATHFINDER — FINAL GATE: COMPLETE END-TO-END SECURITY AUDIT, SCIENTIFIC VALIDATION & PRODUCTION DEPLOYMENT APPROVAL
+
+## 1. ROLE
+
+Act as an independent senior application security auditor, DevSecOps engineer, penetration tester, cloud security engineer, planetary science validation specialist, AI safety evaluator, infrastructure security architect and production release auditor.
+
+You are performing the final release assessment of the existing Mars Pathfinder application.
+
+This is an independent verification phase.
+
+Your responsibility is to determine whether the application is safe, secure, scientifically defensible, reliable and technically ready for production deployment.
+
+Do not assume that earlier development reports are correct.
+
+Inspect actual source code, configurations, database migrations, dependencies, runtime behaviour, APIs, datasets and test evidence.
+
+## 2. NON-NEGOTIABLE RELEASE RULE
+
+**DO NOT DEPLOY THE APPLICATION PUBLICLY DURING THIS AUDIT.**
+
+Do not:
+
+- Publish the application.
+- Change production DNS.
+- Expose public ports.
+- Modify production firewall rules.
+- Upload secrets to public infrastructure.
+- Start public deployment.
+- Change production credentials.
+- Enable public access.
+
+This phase is an assessment and approval process.
+
+Deployment may only occur after the user explicitly approves it following a successful audit.
+
+Critical and high security findings must be fixed or formally accepted by an authorized decision-maker before release.
+
+No critical or high finding may be silently ignored.
+
+## 3. FULL PROJECT INVENTORY
+
+Inspect the entire repository.
+
+Review:
+
+- React frontend.
+- TypeScript code.
+- CesiumJS integration.
+- OpenLayers integration.
+- Go Fiber backend.
+- Python scientific processing.
+- Machine learning models.
+- AI mission assistant.
+- Digital twin.
+- Mission simulation.
+- PostgreSQL.
+- PostGIS.
+- TimescaleDB, if used.
+- Message brokers, if used.
+- Dockerfiles.
+- Docker Compose.
+- Nginx.
+- Environment configuration.
+- CI/CD.
+- External data integrations.
+- Documentation.
+- Tests.
+
+Create an inventory of all exposed interfaces, services, dependencies and trust boundaries.
+
+## 4. SECURITY STANDARDS AND REFERENCES
+
+Use relevant current official standards and guidance.
+
+Evaluate against:
+
+- OWASP ASVS.
+- OWASP Top 10.
+- OWASP API Security Top 10.
+- OWASP Cheat Sheet Series.
+- OWASP Software Assurance Maturity Model where appropriate.
+- OWASP MASVS only if applicable to a mobile application.
+- NIST Secure Software Development Framework.
+- NIST Cybersecurity Framework where applicable.
+- CIS Docker Benchmark.
+- CIS Linux Benchmark.
+- Secure software supply-chain practices.
+- Relevant Go, Python, PostgreSQL and Nginx security guidance.
+
+Identify applicable versions and document the exact requirements evaluated.
+
+Do not claim full compliance with a standard if only selected controls were assessed.
+
+## 5. AUTHENTICATION AND AUTHORIZATION
+
+Inspect all authentication and authorization mechanisms.
+
+Check:
+
+- Authentication enforcement.
+- Session security.
+- Token handling.
+- Password storage if authentication exists.
+- Access-control boundaries.
+- Mission ownership.
+- Crew data access.
+- Administrative access.
+- API authorization.
+- Privilege escalation.
+- Insecure direct object references.
+- Missing authorization checks.
+- Cross-mission data access.
+- Unauthorized simulation modifications.
+
+If the application does not implement authentication, explicitly identify all consequences.
+
+Do not invent an authentication system or claim that an unauthenticated application is production-secure.
+
+## 6. API SECURITY
+
+Assess every API endpoint.
+
+Test for:
+
+- Broken object-level authorization.
+- Broken authentication.
+- Broken function-level authorization.
+- Excessive data exposure.
+- Mass assignment.
+- Injection.
+- SSRF.
+- Path traversal.
+- Request smuggling where applicable.
+- Unsafe deserialization.
+- Rate-limit bypass.
+- Resource exhaustion.
+- Improper error handling.
+- CORS misconfiguration.
+- Security header weaknesses.
+- Insecure WebSocket or streaming access.
+- Input validation failures.
+
+Validate coordinate inputs, mission IDs, crew IDs, simulation parameters and dataset requests.
+
+Use safe and controlled testing.
+
+## 7. FRONTEND SECURITY
+
+Inspect:
+
+- XSS.
+- DOM-based XSS.
+- Unsafe HTML rendering.
+- Token storage.
+- Exposed secrets.
+- Source maps.
+- Frontend environment variables.
+- Third-party scripts.
+- Dependency vulnerabilities.
+- Content Security Policy.
+- Security headers.
+- Cesium token exposure.
+- External URL handling.
+- Untrusted scientific metadata rendering.
+
+Verify that public frontend credentials are restricted appropriately and that no private credentials are included in browser bundles.
+
+## 8. BACKEND SECURITY
+
+Inspect Go and Python code.
+
+Check:
+
+- Unsafe subprocess execution.
+- Command injection.
+- SQL injection.
+- Path traversal.
+- File handling.
+- Temporary files.
+- Unsafe deserialization.
+- SSRF.
+- Unbounded requests.
+- Race conditions.
+- Authentication bypass.
+- Error information leakage.
+- Logging of secrets.
+- Unhandled exceptions.
+- Insecure defaults.
+
+Verify that Python processing cannot be invoked through arbitrary untrusted commands.
+
+Verify that the Go backend enforces appropriate access boundaries.
+
+## 9. DATABASE SECURITY
+
+Inspect PostgreSQL and PostGIS.
+
+Check:
+
+- Database exposure.
+- Default credentials.
+- Privileges.
+- Parameterized queries.
+- SQL injection.
+- Migration safety.
+- Database connection security.
+- Backup security.
+- Sensitive data handling.
+- Access boundaries.
+- Encryption where required.
+- Database logging.
+- Restore procedures.
+
+Verify that database credentials are not committed to source control.
+
+## 10. DOCKER AND INFRASTRUCTURE SECURITY
+
+Inspect all containers and deployment configuration.
+
+Check:
+
+- Non-root execution.
+- Container capabilities.
+- Privileged containers.
+- Host filesystem mounts.
+- Docker socket exposure.
+- Network isolation.
+- Image vulnerabilities.
+- Base image versions.
+- Unnecessary packages.
+- Secrets management.
+- Container health checks.
+- Resource limits.
+- Read-only filesystems where appropriate.
+- Nginx configuration.
+- TLS configuration.
+- Firewall assumptions.
+- Public port exposure.
+- Logging and monitoring.
+
+Perform actual runtime checks where the environment permits.
+
+Do not claim Docker runtime validation if Docker containers were not started.
+
+## 11. DEPENDENCY AND SUPPLY-CHAIN SECURITY
+
+Scan:
+
+- npm dependencies.
+- Go modules.
+- Python packages.
+- Container images.
+- Build tools.
+- Third-party scripts.
+
+Use appropriate tools, such as:
+
+- npm audit.
+- govulncheck.
+- pip-audit.
+- OSV-Scanner.
+- Trivy.
+- Semgrep.
+- Gitleaks.
+
+Use only suitable tools that can be installed and run safely.
+
+Check for:
+
+- Known vulnerabilities.
+- Outdated packages.
+- Malicious or suspicious packages.
+- Dependency confusion risks.
+- Exposed credentials.
+- Insecure build configuration.
+
+Record the exact versions and results.
+
+Do not automatically update every dependency without compatibility testing.
+
+## 12. EXTERNAL DATA INGESTION SECURITY
+
+Review all NASA and third-party data integrations.
+
+Test:
+
+- SSRF protections.
+- Approved host restrictions.
+- Redirect handling.
+- DNS rebinding considerations.
+- TLS verification.
+- Download size restrictions.
+- File type validation.
+- Archive extraction safety.
+- Checksum verification.
+- Malformed metadata.
+- XML and JSON parsing.
+- Malicious filenames.
+- Cache poisoning.
+- Data corruption.
+
+Treat external data as untrusted input even when the source is reputable.
+
+## 13. AI AND MACHINE LEARNING SECURITY
+
+Inspect:
+
+- Prompt injection.
+- Tool authorization.
+- Unsafe tool execution.
+- Model file integrity.
+- Model deserialization.
+- Training data integrity.
+- Data poisoning risks.
+- Inference resource exhaustion.
+- Sensitive data exposure.
+- Model endpoint access.
+- Prediction logging.
+- Model version integrity.
+
+Verify that the AI assistant cannot bypass backend permissions.
+
+Verify that external documents and scientific metadata cannot instruct the assistant to execute unauthorized operations.
+
+Verify that recommendations require appropriate human approval.
+
+## 14. SIMULATION AND DIGITAL TWIN SECURITY
+
+Assess:
+
+- Mission state integrity.
+- Crew telemetry integrity.
+- Event replay integrity.
+- Unauthorized event injection.
+- Timestamp manipulation.
+- Duplicate events.
+- Replay attacks.
+- Mission ownership.
+- Simulation parameter manipulation.
+- Scenario access boundaries.
+- Unauthorized report modification.
+
+Verify that simulated data cannot be misrepresented as authenticated external telemetry.
+
+## 15. SCIENTIFIC VALIDATION
+
+This is a separate mandatory assessment from cybersecurity.
+
+Verify the scientific correctness of:
+
+### A. Geospatial data
+
+- Coordinate reference systems.
+- Planetocentric versus planetographic latitude.
+- East-positive versus west-positive longitude.
+- Mars ellipsoid and reference radius.
+- Elevation datum.
+- Raster georeferencing.
+- Resolution.
+- NoData handling.
+- Spatial transformations.
+
+### B. Terrain calculations
+
+- Elevation.
+- Slope.
+- Aspect.
+- Roughness.
+- Terrain traversability.
+- Distance calculations.
+- Route calculations.
+- Spatial resolution limitations.
+
+### C. Environmental calculations
+
+- Pressure.
+- Temperature.
+- Atmospheric density.
+- Dust opacity.
+- Radiation estimates.
+- Wind measurements.
+- Environmental assumptions.
+
+### D. NASA data provenance
+
+Verify:
+
+- Original product identifiers.
+- Source repositories.
+- Dataset versions.
+- Observation timestamps.
+- Publication timestamps.
+- Processing levels.
+- Units.
+- Calibration.
+- Missing observations.
+- Quality flags.
+
+### E. Machine learning
+
+Verify:
+
+- Dataset provenance.
+- Training and test separation.
+- Data leakage.
+- Model evaluation.
+- Prediction uncertainty.
+- Generalization.
+- Baseline comparisons.
+- Model versioning.
+
+### F. Mission simulation
+
+Verify:
+
+- Movement assumptions.
+- Resource consumption.
+- Crew separation.
+- Rescue planning.
+- Hazard propagation.
+- Communication modelling.
+- Time calculations.
+- Mission replay consistency.
+
+Do not certify operational safety for real human Mars missions.
+
+## 16. AI SAFETY AND DECISION-SUPPORT VALIDATION
+
+Test whether the AI assistant:
+
+- Invents scientific observations.
+- Confuses simulated and real data.
+- Recommends impossible routes.
+- Ignores missing information.
+- Misrepresents prediction confidence.
+- Produces unsupported health conclusions.
+- Executes unauthorized tools.
+- Ignores human approval requirements.
+- Uses stale information without warning.
+
+Every consequential recommendation must be traceable to evidence.
+
+## 17. PERFORMANCE AND RELIABILITY
+
+Test:
+
+- API response times.
+- Large geospatial queries.
+- Concurrent users.
+- Large mission histories.
+- Digital twin replay.
+- Map rendering.
+- ML inference latency.
+- Memory consumption.
+- Database performance.
+- External source outages.
+- Retry behaviour.
+- Cache correctness.
+- Recovery after service failure.
+
+Test realistic workload scenarios.
+
+Document test environment and limitations.
+
+## 18. BACKUP AND DISASTER RECOVERY
+
+Verify:
+
+- Database backup.
+- Database restoration.
+- Scientific dataset recovery.
+- Mission history recovery.
+- Configuration recovery.
+- Secret restoration procedures.
+- Data integrity after restore.
+
+Actually perform a safe backup-and-restore test in a non-production environment.
+
+Documentation alone is not evidence of a successful restore.
+
+## 19. SECURITY FINDING CLASSIFICATION
+
+Classify each finding:
+
+- CRITICAL.
+- HIGH.
+- MEDIUM.
+- LOW.
+- INFORMATIONAL.
+
+For each finding include:
+
+- Finding ID.
+- Affected component.
+- Description.
+- Evidence.
+- Reproduction steps.
+- Impact.
+- Likelihood.
+- Severity.
+- Recommended remediation.
+- Responsible component.
+- Verification status.
+
+Maintain:
+
+`docs/SECURITY_FINDINGS.md`
+
+## 20. REMEDIATION AND RETESTING
+
+Do not simply produce a vulnerability report.
+
+For every confirmed finding:
+
+1. Explain the issue.
+2. Recommend a fix.
+3. Implement fixes only within the authorized scope.
+4. Add regression tests.
+5. Retest the affected component.
+6. Verify that the fix works.
+7. Record evidence.
+
+Do not mark findings as fixed without retesting.
+
+Do not perform destructive testing against public third-party systems.
+
+## 21. RELEASE APPROVAL CHECKLIST
+
+Create:
+
+`docs/PRODUCTION_RELEASE_CHECKLIST.md`
+
+The release checklist must include:
+
+- Security assessment completed.
+- Critical findings resolved or formally accepted.
+- High findings resolved or formally accepted.
+- Medium and low findings documented.
+- Authentication and authorization verified.
+- API security verified.
+- Frontend security verified.
+- Backend security verified.
+- Database security verified.
+- Container security verified.
+- Dependency security verified.
+- External ingestion security verified.
+- AI security verified.
+- Scientific calculations validated.
+- Dataset provenance validated.
+- ML models evaluated.
+- Mission simulations validated.
+- Performance tests completed.
+- Backup and restore verified.
+- Monitoring and logging configured.
+- HTTPS configuration verified.
+- Production secrets prepared.
+- Deployment rollback plan prepared.
+- Incident response procedure documented.
+
+## 22. RELEASE DECISION
+
+Produce one of the following decisions:
+
+### APPROVED FOR DEPLOYMENT
+
+Only when all mandatory release requirements are satisfied.
+
+### CONDITIONALLY APPROVED
+
+Only when remaining findings are explicitly documented, their acceptance is authorized, and no mandatory release-blocking condition remains.
+
+### NOT APPROVED
+
+If any critical or high unresolved issue remains without formal acceptance, or if essential security/scientific validation has not been completed.
+
+The application must remain undeployed if the result is NOT APPROVED.
+
+Do not generate a false approval.
+
+## 23. FINAL DELIVERABLES
+
+Provide:
+
+1. Complete security audit report.
+2. Vulnerability findings.
+3. Remediation report.
+4. Retest evidence.
+5. Scientific validation report.
+6. AI safety report.
+7. Dependency scan report.
+8. Docker and infrastructure assessment.
+9. Performance report.
+10. Backup and restore evidence.
+11. Production release checklist.
+12. Deployment readiness decision.
+13. Outstanding risks.
+14. Updated DEVELOPMENT_STATUS.md.
+
+## 24. FINAL RESTRICTION
+
+Do not deploy the application automatically, even if the assessment result is APPROVED FOR DEPLOYMENT.
+
+Stop and present the final audit report.
+
+Wait for explicit user approval before any production deployment action.
+
+**Mars Pathfinder must not be publicly deployed until the complete end-to-end security assessment has passed and all critical and high findings have been fixed or formally accepted.**
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-15T22:48:17+05:30.
+</ADDITIONAL_METADATA>

@@ -1,0 +1,415 @@
+# MARS PATHFINDER — PHASE 6: MARS DIGITAL TWIN & ADVANCED MISSION REPLAY
+
+## 1. ROLE
+
+Act as a senior digital-twin architect, aerospace simulation engineer, geospatial systems engineer, distributed systems architect, scientific visualization engineer and mission operations researcher.
+
+You are extending the existing Mars Pathfinder platform.
+
+Build a comprehensive Mars Mission Digital Twin.
+
+Do not create a separate application.
+
+## 2. INITIAL AUDIT
+
+Inspect Phases 1–5.
+
+Verify the existing:
+
+- Mars globe and maps.
+- Scientific data platform.
+- Mission management.
+- Crew simulation.
+- Telemetry.
+- Hazard simulation.
+- ML predictions.
+- Rescue algorithms.
+- AI recommendations.
+- Database.
+- API.
+
+Reuse existing components.
+
+Do not duplicate simulation or data-processing functionality.
+
+## 3. DIGITAL TWIN CONCEPT
+
+Create a virtual representation of a complete Mars exploration mission.
+
+The digital twin should represent:
+
+- Mars geographic environment.
+- Landing locations.
+- Crew members.
+- Rovers.
+- Habitats.
+- Mission vehicles.
+- Communication nodes.
+- Resources.
+- Terrain.
+- Environmental conditions.
+- Hazards.
+- Mission objectives.
+- Mission events.
+
+It should update according to simulated events and any verified incoming observations.
+
+Clearly distinguish:
+
+- Static scientific data.
+- Historical observations.
+- Recently published observations.
+- Modelled environmental conditions.
+- AI predictions.
+- Simulated mission state.
+- Authenticated external telemetry.
+
+## 4. TIME ENGINE
+
+Create a centralized mission simulation clock.
+
+Support:
+
+- Mission start time.
+- Mission elapsed time.
+- Simulation time.
+- Pause.
+- Resume.
+- Reset.
+- Time-step advancement.
+- Time acceleration.
+- Time reversal through replay.
+- Event scheduling.
+
+Maintain consistent time handling.
+
+Where relevant, represent Martian sols separately from Earth time.
+
+Do not mix UTC, Earth local time and Mars mission time.
+
+## 5. DIGITAL TWIN STATE ENGINE
+
+Build a structured mission state model.
+
+The state must contain:
+
+- Crew positions.
+- Crew conditions.
+- Rover positions.
+- Vehicle states.
+- Resource quantities.
+- Communication status.
+- Hazard states.
+- Environmental conditions.
+- Mission objectives.
+- Active routes.
+- Mission events.
+
+Support state snapshots.
+
+Support reconstruction of a previous mission state from recorded events.
+
+## 6. EVENT-DRIVEN MISSION ARCHITECTURE
+
+Implement a reliable mission event system.
+
+Potential events:
+
+- Mission created.
+- Mission started.
+- Crew member moved.
+- Crew separated.
+- Hazard appeared.
+- Storm intensified.
+- Communication failed.
+- Resource changed.
+- Astronaut entered distress.
+- Rescue plan generated.
+- Route changed.
+- Crew reunited.
+- Mission completed.
+
+Each event should have:
+
+- Unique identifier.
+- Mission identifier.
+- Event type.
+- Event timestamp.
+- Simulation timestamp.
+- Source.
+- Payload schema.
+- Event version.
+- Provenance.
+- Data classification.
+
+Ensure events can be replayed deterministically where possible.
+
+Avoid applying the same event twice.
+
+## 7. MISSION REPLAY ENGINE
+
+Create a complete mission replay interface.
+
+Users should be able to:
+
+- Select a previous mission.
+- View the event timeline.
+- Play the mission.
+- Pause.
+- Resume.
+- Change playback speed.
+- Move backward and forward.
+- Select an exact mission timestamp.
+- Inspect crew positions.
+- Inspect hazard progression.
+- Inspect resource consumption.
+- Inspect communication changes.
+- Inspect rescue decisions.
+
+Support different playback speeds.
+
+Preserve historical mission state.
+
+Do not overwrite the original mission during replay.
+
+## 8. SCENARIO COMPARISON ENGINE
+
+Allow users to duplicate a mission and run alternative scenarios.
+
+Examples:
+
+Scenario A:
+Normal mission.
+
+Scenario B:
+Dust storm begins earlier.
+
+Scenario C:
+Communication relay becomes unavailable.
+
+Scenario D:
+One astronaut becomes injured.
+
+Scenario E:
+Rover battery decreases faster.
+
+Scenario F:
+Alternative rescue route is selected.
+
+Compare:
+
+- Mission completion.
+- Crew separation duration.
+- Rescue duration.
+- Resource consumption.
+- Route distance.
+- Hazard exposure.
+- Communication availability.
+- Emergency frequency.
+- Decision outcomes.
+
+Use identical initial conditions when performing controlled comparisons.
+
+## 9. 3D DIGITAL TWIN VISUALIZATION
+
+Extend CesiumJS.
+
+Show:
+
+- Mars terrain.
+- Crew members.
+- Rovers.
+- Habitats.
+- Landing sites.
+- Mission routes.
+- Hazard areas.
+- Communication links.
+- Resource locations.
+- Time-based movement paths.
+
+Allow the user to inspect individual objects.
+
+Add a synchronized timeline.
+
+Preserve 2D and 3D coordinate consistency.
+
+Do not use decorative 3D effects that imply scientific precision the underlying data does not support.
+
+## 10. MISSION PERFORMANCE ANALYTICS
+
+Create a digital twin analytics dashboard.
+
+Calculate:
+
+- Mission duration.
+- Total travel distance.
+- Resource consumption.
+- Crew separation duration.
+- Rescue response time.
+- Route efficiency.
+- Hazard exposure estimates.
+- Communication availability.
+- Mission objective completion.
+- Scenario comparison results.
+
+Explain calculation methods.
+
+Distinguish measured values from simulated outcomes.
+
+## 11. DIGITAL TWIN SYNCHRONIZATION
+
+Prepare the architecture for future external data synchronization.
+
+Allow supported data adapters to update the digital twin when verified new observations arrive.
+
+Do not assume that all external observations are continuous.
+
+Track:
+
+- Observation time.
+- Retrieval time.
+- Processing time.
+- Synchronization status.
+- Data source.
+- Data quality.
+
+Do not allow stale data to silently overwrite newer verified data.
+
+## 12. REPORT GENERATION
+
+Allow users to export:
+
+- Mission summary.
+- Crew movement history.
+- Emergency timeline.
+- Hazard progression.
+- Rescue route comparison.
+- Resource analysis.
+- Mission performance.
+- Scenario comparison.
+- AI recommendation history.
+- Scientific data provenance.
+
+Include clear statements identifying simulated and observed information.
+
+## 13. DATABASE DESIGN
+
+Inspect existing database structures.
+
+Add only necessary entities.
+
+Potential entities:
+
+- digital_twin_instances
+- mission_state_snapshots
+- mission_events
+- mission_event_versions
+- scenario_branches
+- replay_sessions
+- mission_analytics
+- twin_sync_logs
+- mission_object_history
+
+Use appropriate indexes.
+
+Maintain event ordering and consistency.
+
+## 14. FRONTEND
+
+Create:
+
+**Mars Digital Twin**
+
+Sections:
+
+- Live Mission View.
+- Mission Timeline.
+- Replay Center.
+- Scenario Comparison.
+- Mission Analytics.
+- Object Inspector.
+- Data Synchronization.
+
+Build an intuitive time-control interface.
+
+Show the current simulation timestamp prominently.
+
+Clearly label historical replay and current simulation states.
+
+## 15. PERFORMANCE
+
+The digital twin may contain large event histories and geospatial datasets.
+
+Implement:
+
+- Efficient event retrieval.
+- Time-based pagination.
+- State snapshots.
+- Incremental replay.
+- Spatial filtering.
+- Efficient rendering.
+- Caching.
+- Background processing.
+
+Avoid loading an entire mission history into the browser at once.
+
+## 16. TESTING
+
+Test:
+
+- Event ordering.
+- Duplicate event prevention.
+- State reconstruction.
+- Snapshot consistency.
+- Replay determinism.
+- Time controls.
+- Scenario branching.
+- 2D/3D synchronization.
+- Mission comparisons.
+- Historical state integrity.
+- Data freshness.
+- Persistence.
+- Performance.
+- Existing feature regressions.
+
+## 17. SECURITY
+
+Protect mission histories and event data.
+
+Validate replay requests.
+
+Prevent unauthorized mission modifications.
+
+Protect report generation.
+
+Ensure that historical mission records cannot be silently altered.
+
+Maintain audit trails.
+
+Do not deploy publicly.
+
+## 18. FINAL DELIVERABLES
+
+Provide:
+
+- Digital twin architecture.
+- Mission state engine.
+- Event system.
+- Time engine.
+- Replay engine.
+- Scenario comparison.
+- 3D visualization.
+- Analytics.
+- Database migrations.
+- API documentation.
+- Performance report.
+- Test report.
+- Security observations.
+- Updated documentation.
+
+Do not start the final security and deployment gate automatically.
+
+Wait for approval.
+
+The objective is to create a complete interactive Mars mission digital twin where users can understand what happened, why it happened, how decisions affected the mission and what alternative outcomes could have occurred.
+

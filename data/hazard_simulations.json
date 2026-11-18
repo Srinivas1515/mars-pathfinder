@@ -1,0 +1,31 @@
+{
+  "simulations": [
+    {
+      "id": "SCN_JEZERO_SQUALL",
+      "config": {
+        "id": "SCN_JEZERO_SQUALL",
+        "name": "Jezero Delta Mesoscale Dust Squall",
+        "scenario_code": "JEZERO_REGIONAL_SQUALL",
+        "target_region_name": "Jezero Crater & Isidis Planitia",
+        "initial_lat": 16.5,
+        "initial_lon": 82.0,
+        "initial_radius_km": 75.0,
+        "max_radius_km": 450.0,
+        "expansion_rate_km_h": 14.0,
+        "drift_bearing_deg": 260.0,
+        "drift_speed_km_h": 22.5,
+        "peak_optical_depth_tau": 3.8,
+        "peak_wind_speed_m_s": 29.0,
+        "duration_sols": 8,
+        "historical_reference": "Perseverance MEDA Sol 210 Mesoscale Model",
+        "is_benchmark": true
+      },
+      "status": "INITIALIZED",
+      "phase": "GROWTH",
+      "current_lat": 16.5,
+      "current_lon": 82.0,
+      "current_radius_km": 75.0,
+      "current_tau": 1.3299999999999998
+    }
+  ]
+}
